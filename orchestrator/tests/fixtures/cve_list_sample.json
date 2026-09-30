@@ -1,0 +1,132 @@
+[
+  {
+    "dataType": "CVE_RECORD",
+    "dataVersion": "5.0",
+    "cveMetadata": {
+      "cveId": "CVE-2025-24813",
+      "assignerOrgId": "f38d906d-7342-40ea-92c1-6c4a2c6478c8",
+      "state": "PUBLISHED",
+      "datePublished": "2025-02-10T09:30:00.000Z",
+      "dateUpdated": "2025-02-12T12:00:00.000Z"
+    },
+    "containers": {
+      "cna": {
+        "providerMetadata": {
+          "orgId": "f38d906d-7342-40ea-92c1-6c4a2c6478c8"
+        },
+        "title": "Apache Tomcat - Partial PUT could lead to remote code execution",
+        "descriptions": [
+          {
+            "lang": "en",
+            "value": "An unauthenticated remote attacker could send a partial PUT request to DefaultServlet causing partial file write."
+          }
+        ],
+        "affected": [
+          {
+            "vendor": "Apache Software Foundation",
+            "product": "Apache Tomcat",
+            "defaultStatus": "unaffected",
+            "versions": [
+              {
+                "version": "9.0.0.M1",
+                "lessThanOrEqual": "9.0.98",
+                "status": "affected",
+                "versionType": "semver"
+              },
+              {
+                "version": "10.1.0-M1",
+                "lessThanOrEqual": "10.1.34",
+                "status": "affected",
+                "versionType": "semver"
+              }
+            ]
+          }
+        ],
+        "problemTypes": [
+          {
+            "descriptions": [
+              {
+                "lang": "en",
+                "cweId": "CWE-22",
+                "description": "CWE-22 Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')"
+              }
+            ]
+          }
+        ],
+        "metrics": [
+          {
+            "format": "CVSS",
+            "cvssV3_1": {
+              "version": "3.1",
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "baseScore": 7.5,
+              "baseSeverity": "HIGH"
+            }
+          }
+        ],
+        "references": [
+          {
+            "url": "https://lists.apache.org/thread/tomcat-cve-2025-24813",
+            "name": "Apache Announcement"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "dataType": "CVE_RECORD",
+    "dataVersion": "5.0",
+    "cveMetadata": {
+      "cveId": "CVE-2021-44228",
+      "assignerOrgId": "f38d906d-7342-40ea-92c1-6c4a2c6478c8",
+      "state": "PUBLISHED",
+      "datePublished": "2021-12-10T10:00:00.000Z",
+      "dateUpdated": "2021-12-14T20:00:00.000Z"
+    },
+    "containers": {
+      "cna": {
+        "providerMetadata": {
+          "orgId": "f38d906d-7342-40ea-92c1-6c4a2c6478c8"
+        },
+        "title": "Apache Log4j2 JNDI RCE vulnerability",
+        "descriptions": [
+          {
+            "lang": "en",
+            "value": "Apache Log4j2 JNDI lookup features allow remote code execution via LDAP/RMI."
+          }
+        ],
+        "affected": [
+          {
+            "vendor": "Apache Software Foundation",
+            "product": "Apache Log4j",
+            "versions": [
+              {
+                "version": "2.0-beta9",
+                "lessThan": "2.15.0",
+                "status": "affected",
+                "versionType": "semver"
+              }
+            ]
+          }
+        ],
+        "problemTypes": [
+          {
+            "descriptions": [
+              {
+                "lang": "en",
+                "cweId": "CWE-502",
+                "description": "Deserialization of Untrusted Data"
+              }
+            ]
+          }
+        ],
+        "references": [
+          {
+            "url": "https://logging.apache.org/log4j/2.x/security.html",
+            "name": "Log4j Advisory"
+          }
+        ]
+      }
+    }
+  }
+]

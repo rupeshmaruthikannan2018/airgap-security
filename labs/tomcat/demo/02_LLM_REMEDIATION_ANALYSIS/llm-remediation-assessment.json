@@ -1,0 +1,31 @@
+{
+    "experiment": {
+        "name": "CVE-2025-24813 remediation recheck",
+        "model_role": "Post-remediation evidence assessment",
+        "server": "Apache Tomcat",
+        "tomcat_before": "9.0.98",
+        "tomcat_after": "9.0.98",
+        "fixed_tomcat_9_version": "9.0.99"
+    },
+    "llm_assessment": {
+        "remediation_assessment": "The remediation is a successful configuration mitigation that blocks the specific exploit vector, but it is not a software patch.",
+        "configuration_mitigation": {
+            "status": "successful",
+            "reason": "The DefaultServlet readonly attribute was changed from false to true, which effectively disabled the ability to perform write operations via the DefaultServlet."
+        },
+        "behavioral_validation": {
+            "status": "successful",
+            "reason": "The controlled PUT request resulted in an HTTP 405 Method Not Allowed response and the write behavior was confirmed as WRITE_BLOCKED, proving the mitigation works for the tested operation."
+        },
+        "software_patch": {
+            "status": "not_performed",
+            "reason": "The Tomcat software version remains 9.0.98, which is below the fixed version of 9.0.99 required to resolve the underlying vulnerability."
+        },
+        "remaining_conditions": [
+            "The underlying software vulnerability in Tomcat 9.0.98 remains present in the codebase.",
+            "The effectiveness of the mitigation against other potential bypasses or different servlet configurations is unknown."
+        ],
+        "final_reasoning": "While the change to the DefaultServlet readonly setting successfully blocked the tested PUT request and satisfied the immediate security requirement, the application is still running a vulnerable version of Tomcat. The remediation is strictly a configuration mitigation rather than a software patch; therefore, the root cause remains unaddressed.",
+        "confidence": "high"
+    }
+}

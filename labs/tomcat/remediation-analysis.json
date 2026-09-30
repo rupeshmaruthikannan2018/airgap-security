@@ -1,0 +1,474 @@
+{
+  "status": "completed",
+  "cve": "CVE-2025-24813",
+  "model": "gemma-4-26b-a4b-it",
+  "scanner_finding": {
+    "id": "TRIVY-TOMCAT-074",
+    "scanner": "trivy",
+    "type": "dependency_vulnerability",
+    "title": "tomcat: Potential RCE and/or information disclosure and/or information corruption with partial PUT",
+    "severity": "CRITICAL",
+    "confidence": "HIGH",
+    "cve": "CVE-2025-24813",
+    "package": "org.apache.tomcat:tomcat-catalina",
+    "installed_version": "9.0.98",
+    "fixed_version": "11.0.3, 10.1.35, 9.0.99",
+    "description": "Path Equivalence: 'file.Name' (Internal Dot) leading to Remote Code Execution and/or Information disclosure and/or malicious content added to uploaded files via write enabled Default Servlet in Apache Tomcat.\n\nThis issue affects Apache Tomcat: from 11.0.0-M1 through 11.0.2, from 10.1.0-M1 through 10.1.34, from 9.0.0.M1 through 9.0.98.\nThe following versions were EOL at the time the CVE was created but are \nknown to be affected: 8.5.0 though 8.5.100. Other, older, EOL versions \nmay also be affected.\n\n\nIf all of the following were true, a malicious user was able to view       security sensitive files and/or inject content into those files:\n- writes enabled for the default servlet (disabled by default)\n- support for partial PUT (enabled by default)\n- a target URL for security sensitive uploads that was a sub-directory of a target URL for public uploads\n- attacker knowledge of the names of security sensitive files being uploaded\n- the security sensitive files also being uploaded via partial PUT\n\nIf all of the following were true, a malicious user was able to       perform remote code execution:\n- writes enabled for the default servlet (disabled by default)\n- support for partial PUT (enabled by default)\n- application was using Tomcat's file based session persistence with the default storage location\n- application included a library that may be leveraged in a deserialization attack\n\nUsers are recommended to upgrade to version 11.0.3, 10.1.35 or 9.0.99, which fixes the issue.",
+    "cwe": [
+      "CWE-44",
+      "CWE-502",
+      "CWE-706"
+    ],
+    "target": "Java",
+    "pkg_path": "opt/tomcat/lib/catalina.jar",
+    "primary_url": "https://avd.aquasec.com/nvd/cve-2025-24813",
+    "references": [
+      "http://www.openwall.com/lists/oss-security/2025/03/10/5",
+      "https://access.redhat.com/errata/RHSA-2025:3645",
+      "https://access.redhat.com/errata/RHSA-2025:3683",
+      "https://access.redhat.com/security/cve/CVE-2025-24813",
+      "https://bugzilla.redhat.com/2332817",
+      "https://bugzilla.redhat.com/2351129",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2332817",
+      "https://bugzilla.redhat.com/show_bug.cgi?id=2351129",
+      "https://creativecommons.org/licenses/by/4.0/",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-50379",
+      "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-24813",
+      "https://errata.almalinux.org/9/ALSA-2025-3645.html",
+      "https://errata.rockylinux.org/RLSA-2025:3683",
+      "https://github.com/absholi7ly/POC-CVE-2025-24813/blob/main/README.md",
+      "https://github.com/apache/tomcat",
+      "https://github.com/apache/tomcat/commit/0a668e0c27f2b7ca0cc7c6eea32253b9b5ecb29c",
+      "https://github.com/apache/tomcat/commit/eb61aade8f8daccaecabf07d428b877975622f72",
+      "https://github.com/apache/tomcat/commit/f6c01d6577cf9a1e06792be47e623d36acc3b5dc",
+      "https://linux.oracle.com/cve/CVE-2025-24813.html",
+      "https://linux.oracle.com/errata/ELSA-2025-7497.html",
+      "https://lists.apache.org/thread/j5fkjv2k477os90nczf2v9l61fb0kkgq",
+      "https://lists.debian.org/debian-lts-announce/2025/04/msg00003.html",
+      "https://nvd.nist.gov/vuln/detail/CVE-2025-24813",
+      "https://security.netapp.com/advisory/ntap-20250321-0001",
+      "https://security.netapp.com/advisory/ntap-20250321-0001/",
+      "https://ubuntu.com/security/notices/USN-7525-1",
+      "https://ubuntu.com/security/notices/USN-7525-2",
+      "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+      "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2025-24813",
+      "https://www.cve.org/CVERecord?id=CVE-2025-24813",
+      "https://www.vicarius.io/vsociety/posts/cve-2025-24813-detect-apache-tomcat-rce",
+      "https://www.vicarius.io/vsociety/posts/cve-2025-24813-mitigate-apache-tomcat-rce",
+      "https://www.vicarius.io/vsociety/posts/cve-2025-24813-tomcat-detect-vulnerability",
+      "https://www.vicarius.io/vsociety/posts/cve-2025-24813-tomcat-mitigation-vulnerability"
+    ],
+    "cvss": {
+      "bitnami": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+        "V3Score": 10
+      },
+      "ghsa": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:H",
+        "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N/E:A",
+        "V3Score": 9.8,
+        "V40Score": 9.2
+      },
+      "nvd": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "V3Score": 9.8
+      },
+      "redhat": {
+        "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:L",
+        "V3Score": 8.6
+      }
+    },
+    "published_date": "2025-03-10T17:15:35.067Z",
+    "last_modified_date": "2026-06-17T08:59:39.593Z",
+    "scanner_evidence": {
+      "source": "Trivy image scan",
+      "target": "Java",
+      "vulnerability_id": "CVE-2025-24813",
+      "package": "org.apache.tomcat:tomcat-catalina",
+      "installed_version": "9.0.98",
+      "fixed_version": "11.0.3, 10.1.35, 9.0.99",
+      "severity": "CRITICAL",
+      "description": "Path Equivalence: 'file.Name' (Internal Dot) leading to Remote Code Execution and/or Information disclosure and/or malicious content added to uploaded files via write enabled Default Servlet in Apache Tomcat.\n\nThis issue affects Apache Tomcat: from 11.0.0-M1 through 11.0.2, from 10.1.0-M1 through 10.1.34, from 9.0.0.M1 through 9.0.98.\nThe following versions were EOL at the time the CVE was created but are \nknown to be affected: 8.5.0 though 8.5.100. Other, older, EOL versions \nmay also be affected.\n\n\nIf all of the following were true, a malicious user was able to view       security sensitive files and/or inject content into those files:\n- writes enabled for the default servlet (disabled by default)\n- support for partial PUT (enabled by default)\n- a target URL for security sensitive uploads that was a sub-directory of a target URL for public uploads\n- attacker knowledge of the names of security sensitive files being uploaded\n- the security sensitive files also being uploaded via partial PUT\n\nIf all of the following were true, a malicious user was able to       perform remote code execution:\n- writes enabled for the default servlet (disabled by default)\n- support for partial PUT (enabled by default)\n- application was using Tomcat's file based session persistence with the default storage location\n- application included a library that may be leveraged in a deserialization attack\n\nUsers are recommended to upgrade to version 11.0.3, 10.1.35 or 9.0.99, which fixes the issue."
+    }
+  },
+  "environment_configuration": {
+    "default_servlet": {
+      "readonly": false,
+      "readonly_source": "explicit configuration",
+      "writes_enabled": true,
+      "allowPartialPut": true,
+      "allowPartialPut_source": "Tomcat default",
+      "listings": false,
+      "listings_source": "explicit configuration"
+    },
+    "session_persistence": {
+      "manager_configured": false,
+      "manager_class": "org.apache.catalina.session.StandardManager",
+      "pathname": "SESSIONS.ser",
+      "file_based_persistence": true,
+      "persistence_source": "Tomcat default"
+    },
+    "application_libraries": {
+      "jar_files": [],
+      "count": 0
+    },
+    "deployed_applications": [
+      "ROOT",
+      "host-manager",
+      "manager"
+    ],
+    "connectors": [
+      {
+        "port": "8080",
+        "protocol": "HTTP/1.1"
+      }
+    ]
+  },
+  "condition_evaluation": {
+    "cve_id": "CVE-2025-24813",
+    "product": {
+      "vendor": "Apache",
+      "name": "Tomcat",
+      "component": "DefaultServlet / Tomcat session persistence"
+    },
+    "affected_versions": {
+      "product": "Apache Tomcat",
+      "range": "9.0.0.M1 through 9.0.98"
+    },
+    "fixed_versions": {
+      "tomcat_9": "9.0.99",
+      "tomcat_10": "10.1.35",
+      "tomcat_11": "11.0.3"
+    },
+    "vulnerability": {
+      "title": "Potential RCE and/or information disclosure and/or malicious content added to uploaded files via write enabled Default Servlet",
+      "type": [
+        "Path Equivalence",
+        "Remote Code Execution",
+        "Information Disclosure",
+        "Improper File Handling"
+      ],
+      "cwe": [
+        "CWE-44",
+        "CWE-502",
+        "CWE-706"
+      ]
+    },
+    "evaluation": {
+      "information_disclosure_or_content_injection": {
+        "status": "unknown",
+        "conditions": [
+          {
+            "condition_id": "condition_1",
+            "name": "default_servlet_writes_enabled",
+            "description": "Writes must be enabled for the Default Servlet.",
+            "required_value": true,
+            "status": "satisfied",
+            "selected_evidence": {
+              "path": "default_servlet.writes_enabled",
+              "value": true,
+              "status": "satisfied"
+            },
+            "all_evidence": [
+              {
+                "path": "default_servlet.writes_enabled",
+                "value": true,
+                "status": "satisfied"
+              },
+              {
+                "path": "default_servlet.readonly",
+                "value": false,
+                "status": "not_satisfied"
+              }
+            ]
+          },
+          {
+            "condition_id": "condition_2",
+            "name": "partial_put_enabled",
+            "description": "Partial PUT support must be enabled.",
+            "required_value": true,
+            "status": "satisfied",
+            "selected_evidence": {
+              "path": "default_servlet.allowPartialPut",
+              "value": true,
+              "status": "satisfied"
+            },
+            "all_evidence": [
+              {
+                "path": "default_servlet.allowPartialPut",
+                "value": true,
+                "status": "satisfied"
+              }
+            ]
+          },
+          {
+            "condition_id": "condition_3",
+            "name": "security_sensitive_upload_path_relationship",
+            "description": "A target URL for security-sensitive uploads must be a sub-directory of a target URL for public uploads.",
+            "required_value": "must_be_established",
+            "status": "unknown",
+            "selected_evidence": {
+              "path": "application_routes",
+              "value": null,
+              "status": "unknown"
+            },
+            "all_evidence": [
+              {
+                "path": "application_routes",
+                "value": null,
+                "status": "unknown"
+              },
+              {
+                "path": "upload_paths",
+                "value": null,
+                "status": "unknown"
+              }
+            ]
+          },
+          {
+            "condition_id": "condition_4",
+            "name": "attacker_knows_sensitive_filename",
+            "description": "The attacker must know the names of security-sensitive files being uploaded.",
+            "required_value": "must_be_established",
+            "status": "unknown",
+            "selected_evidence": {
+              "path": "application_behavior",
+              "value": null,
+              "status": "unknown"
+            },
+            "all_evidence": [
+              {
+                "path": "application_behavior",
+                "value": null,
+                "status": "unknown"
+              },
+              {
+                "path": "application_routes",
+                "value": null,
+                "status": "unknown"
+              }
+            ]
+          },
+          {
+            "condition_id": "condition_5",
+            "name": "sensitive_files_use_partial_put",
+            "description": "The security-sensitive files must also be uploaded using partial PUT.",
+            "required_value": "must_be_established",
+            "status": "unknown",
+            "selected_evidence": {
+              "path": "application_behavior",
+              "value": null,
+              "status": "unknown"
+            },
+            "all_evidence": [
+              {
+                "path": "application_behavior",
+                "value": null,
+                "status": "unknown"
+              },
+              {
+                "path": "upload_configuration",
+                "value": null,
+                "status": "unknown"
+              }
+            ]
+          }
+        ]
+      },
+      "remote_code_execution": {
+        "status": "not_satisfied",
+        "conditions": [
+          {
+            "condition_id": "condition_1",
+            "name": "default_servlet_writes_enabled",
+            "description": "Writes must be enabled for the Default Servlet.",
+            "required_value": true,
+            "status": "satisfied",
+            "selected_evidence": {
+              "path": "default_servlet.writes_enabled",
+              "value": true,
+              "status": "satisfied"
+            },
+            "all_evidence": [
+              {
+                "path": "default_servlet.writes_enabled",
+                "value": true,
+                "status": "satisfied"
+              },
+              {
+                "path": "default_servlet.readonly",
+                "value": false,
+                "status": "not_satisfied"
+              }
+            ]
+          },
+          {
+            "condition_id": "condition_2",
+            "name": "partial_put_enabled",
+            "description": "Partial PUT support must be enabled.",
+            "required_value": true,
+            "status": "satisfied",
+            "selected_evidence": {
+              "path": "default_servlet.allowPartialPut",
+              "value": true,
+              "status": "satisfied"
+            },
+            "all_evidence": [
+              {
+                "path": "default_servlet.allowPartialPut",
+                "value": true,
+                "status": "satisfied"
+              }
+            ]
+          },
+          {
+            "condition_id": "condition_3",
+            "name": "file_based_session_persistence",
+            "description": "The application must use Tomcat file-based session persistence with the default storage location.",
+            "required_value": true,
+            "status": "satisfied",
+            "selected_evidence": {
+              "path": "session_persistence.file_based_persistence",
+              "value": true,
+              "status": "satisfied"
+            },
+            "all_evidence": [
+              {
+                "path": "session_persistence.file_based_persistence",
+                "value": true,
+                "status": "satisfied"
+              },
+              {
+                "path": "session_persistence.pathname",
+                "value": "SESSIONS.ser",
+                "status": "not_satisfied"
+              },
+              {
+                "path": "session_persistence.manager_class",
+                "value": "org.apache.catalina.session.StandardManager",
+                "status": "not_satisfied"
+              }
+            ]
+          },
+          {
+            "condition_id": "condition_4",
+            "name": "deserialization_library",
+            "description": "The application must include a library that may be leveraged in a deserialization attack.",
+            "required_value": "must_be_identified",
+            "status": "not_satisfied",
+            "selected_evidence": {
+              "path": "application_libraries.jar_files",
+              "value": [],
+              "status": "not_satisfied"
+            },
+            "all_evidence": [
+              {
+                "path": "application_libraries.jar_files",
+                "value": [],
+                "status": "not_satisfied"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "remediation": {
+      "primary": "Upgrade Apache Tomcat to a fixed version.",
+      "recommended_tomcat_9_version": "9.0.99 or later",
+      "alternative_versions": [
+        "10.1.35 or later",
+        "11.0.3 or later"
+      ]
+    },
+    "validation": {
+      "version_check": "Verify the running Tomcat version is fixed.",
+      "configuration_check": "Recollect effective configuration.",
+      "vulnerability_scan": "Run Trivy again.",
+      "behavioral_check": "Verify that the vulnerable configuration or behavior is no longer present."
+    },
+    "source": {
+      "type": "vendor_advisory",
+      "vendor": "Apache Tomcat",
+      "url": "https://tomcat.apache.org/security-9",
+      "retrieved_for_project": "CVE-2025-24813"
+    }
+  },
+  "remediation_analysis": {
+    "applicability": {
+      "status": "CONFIRMED",
+      "reason": "The installed version of org.apache.tomcat:tomcat-catalina is 9.0.98, which falls within the affected version range (9.0.0.M1 through 9.0.98) for CVE-2025-24813 as specified in the vulnerability_knowledge and condition_evaluation evidence."
+    },
+    "risk": "CRITICAL",
+    "conditions": [
+      {
+        "condition": "default_servlet_writes_enabled",
+        "status": "CONFIRMED",
+        "evidence": "default_servlet.writes_enabled: true",
+        "reason": "The condition evaluation shows this condition is satisfied, as writes are enabled for the Default Servlet."
+      },
+      {
+        "condition": "partial_put_enabled",
+        "status": "CONFIRMED",
+        "evidence": "default_servlet.allowPartialPut: true",
+        "reason": "The condition evaluation shows this condition is satisfied, as partial PUT support is enabled."
+      },
+      {
+        "condition": "security_sensitive_upload_path_relationship",
+        "status": "UNKNOWN",
+        "evidence": "application_routes: null, upload_paths: null",
+        "reason": "The condition evaluation shows this condition is unknown, as no evidence establishes the required relationship between upload paths."
+      },
+      {
+        "condition": "attacker_knows_sensitive_filename",
+        "status": "UNKNOWN",
+        "evidence": "application_behavior: null, application_routes: null",
+        "reason": "The condition evaluation shows this condition is unknown, as no evidence establishes that the attacker knows the names of security-sensitive files."
+      },
+      {
+        "condition": "sensitive_files_use_partial_put",
+        "status": "UNKNOWN",
+        "evidence": "application_behavior: null, upload_configuration: null",
+        "reason": "The condition evaluation shows this condition is unknown, as no evidence establishes that security-sensitive files are uploaded via partial PUT."
+      },
+      {
+        "condition": "file_based_session_persistence",
+        "status": "CONFIRMED",
+        "evidence": "session_persistence.file_based_persistence: true",
+        "reason": "The condition evaluation shows this condition is satisfied, as the application uses Tomcat file-based session persistence."
+      },
+      {
+        "condition": "deserialization_library",
+        "status": "NOT_SATISFIED",
+        "evidence": "application_libraries.jar_files: []",
+        "reason": "The condition evaluation shows this condition is not satisfied, as no libraries that could be leveraged in a deserialization attack are present."
+      }
+    ],
+    "rce_assessment": {
+      "status": "NOT_SATISFIED",
+      "reason": "The deterministic evaluation for remote_code_execution is 'not_satisfied' because the deserialization_library condition is not satisfied, and the file_based_session_persistence condition's sub-conditions (pathname and manager_class) are not satisfied, even though the top-level file_based_session_persistence is marked satisfied in the conditions list. The overall RCE status must reflect the evaluator's final determination."
+    },
+    "information_disclosure_assessment": {
+      "status": "UNKNOWN",
+      "reason": "The deterministic evaluation for information_disclosure_or_content_injection is 'unknown' because several conditions (security_sensitive_upload_path_relationship, attacker_knows_sensitive_filename, sensitive_files_use_partial_put) are unknown, preventing a confirmed or not_satisfied determination."
+    },
+    "root_cause": "Path equivalence vulnerability in the Default Servlet due to improper handling of internal dots in file names, which can lead to RCE or information disclosure when specific prerequisites are met, including writable Default Servlet, enabled partial PUT, file-based session persistence, and presence of a deserialization gadget library.",
+    "remediation": [
+      {
+        "action": "Upgrade Apache Tomcat to version 9.0.99 or later for the 9.x branch.",
+        "reason": "The vendor has fixed CVE-2025-24813 in Tomcat 9.0.99, 10.1.35, and 11.0.3. Upgrading removes the vulnerable code path.",
+        "type": "UPGRADE"
+      }
+    ],
+    "validation": [
+      "Verify the installed version of org.apache.tomcat:tomcat-catalina is 9.0.99 or later.",
+      "Re-run the Trivy scanner to confirm the vulnerability is no longer detected.",
+      "Recollect the Default Servlet configuration to ensure writes_enabled remains true (if required) but note that the fix is in the Tomcat version, not configuration."
+    ],
+    "confidence": "HIGH",
+    "unknowns": [
+      "Whether the application uses security-sensitive uploads that are sub-directories of public upload paths.",
+      "Whether the attacker has knowledge of security-sensitive file names being uploaded.",
+      "Whether security-sensitive files are being uploaded via partial PUT."
+    ]
+  }
+}

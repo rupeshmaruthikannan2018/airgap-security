@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-28T10:31:18.901458+00:00",
+  "total_files": 3,
+  "files": {
+    "cve_list_sample.json": "c48a9432c1a937407e5142d5e5b987207ddacc3b14374808e138146b2a633651",
+    "malformed_record.json": "8fcd08c03c4939d853ece407b2fbc1943146417d498ee7aa3cdc2e98d9a602ea",
+    "nvd_sample.json": "faba6f45501939496e112de3c00458825d2083b6ef0b7099bcbca2687e1a10d8"
+  },
+  "metadata": {}
+}

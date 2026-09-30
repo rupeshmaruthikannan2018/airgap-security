@@ -1,0 +1,59 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Large Datasets and Production Databases (Exceeds GitHub 100MB Limit)
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+*.checkpoint.json
+*.exe
+tools/
+cve_data_production/
+cve_data_test/
+data/nvd/
+data/cve_list_v5/
+semgrep-community-rules/
+
+# Workspace, temporary output, and logs
+workspace/
+scratch/
+*.log
+nmap_scan_output.xml
+demo-network.log
+semgrep-*-test.json
+
+# Environment variables & secrets
+.env
+.env.*
+*.pem
+*.key
+
+# IDE & Editor settings
+.idea/
+.vscode/
+*.swp
+*.swo

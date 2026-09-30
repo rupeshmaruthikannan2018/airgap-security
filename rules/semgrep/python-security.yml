@@ -1,0 +1,35 @@
+rules:
+
+  - id: local-python-sql-injection
+    languages:
+      - python
+    message: "Potential SQL injection: user-controlled data is being concatenated into a SQL query."
+    severity: ERROR
+    patterns:
+      - pattern: $CONN.execute($QUERY)
+      - metavariable-pattern:
+          metavariable: $QUERY
+          patterns:
+            - pattern: $X + $Y
+    metadata:
+      cwe:
+        - CWE-89
+      confidence: HIGH
+      category: security
+      technology:
+        - python
+        - sql
+
+  - id: local-python-command-injection
+    languages:
+      - python
+    message: "Potential command injection: subprocess is executed with shell=True."
+    severity: ERROR
+    pattern: subprocess.$FUNC(..., shell=True, ...)
+    metadata:
+      cwe:
+        - CWE-78
+      confidence: HIGH
+      category: security
+      technology:
+        - python

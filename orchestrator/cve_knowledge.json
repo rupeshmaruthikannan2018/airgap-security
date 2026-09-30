@@ -1,0 +1,444 @@
+{
+  "CVE-2025-24813": {
+    "cve_id": "CVE-2025-24813",
+    "product": {
+      "vendor": "Apache",
+      "name": "Tomcat",
+      "component": "DefaultServlet / Tomcat session persistence"
+    },
+    "affected_versions": {
+      "product": "Apache Tomcat",
+      "range": "9.0.0.M1 through 9.0.98"
+    },
+    "fixed_versions": {
+      "tomcat_9": "9.0.99",
+      "tomcat_10": "10.1.35",
+      "tomcat_11": "11.0.3"
+    },
+    "severity": "HIGH",
+    "description": "In Apache Tomcat, when the DefaultServlet is configured with readonly=false (allowing PUT writes), an attacker can exploit path equivalence and partial PUT mechanisms to upload malicious serialized files, potentially leading to remote code execution (RCE) if file-based session persistence is enabled or arbitrary content injection.",
+    "vulnerability": {
+      "title": "Potential RCE and/or information disclosure and/or malicious content added to uploaded files via write enabled Default Servlet",
+      "type": [
+        "Path Equivalence",
+        "Remote Code Execution",
+        "Information Disclosure",
+        "Improper File Handling"
+      ],
+      "cwe": [
+        "CWE-44",
+        "CWE-502",
+        "CWE-706"
+      ]
+    },
+    "conditions": {
+      "information_disclosure_or_content_injection": [
+        {
+          "id": "condition_1",
+          "name": "default_servlet_writes_enabled",
+          "description": "Writes must be enabled for the Default Servlet.",
+          "configuration_evidence": [
+            "default_servlet.writes_enabled",
+            "default_servlet.readonly"
+          ],
+          "required_value": true
+        },
+        {
+          "id": "condition_2",
+          "name": "partial_put_enabled",
+          "description": "Partial PUT support must be enabled.",
+          "configuration_evidence": [
+            "default_servlet.allowPartialPut"
+          ],
+          "required_value": true
+        },
+        {
+          "id": "condition_3",
+          "name": "security_sensitive_upload_path_relationship",
+          "description": "A target URL for security-sensitive uploads must be a sub-directory of a target URL for public uploads.",
+          "configuration_evidence": [
+            "application_routes",
+            "upload_paths"
+          ],
+          "required_value": "must_be_established"
+        },
+        {
+          "id": "condition_4",
+          "name": "attacker_knows_sensitive_filename",
+          "description": "The attacker must know the names of security-sensitive files being uploaded.",
+          "configuration_evidence": [
+            "application_behavior",
+            "application_routes"
+          ],
+          "required_value": "must_be_established"
+        },
+        {
+          "id": "condition_5",
+          "name": "sensitive_files_use_partial_put",
+          "description": "The security-sensitive files must also be uploaded using partial PUT.",
+          "configuration_evidence": [
+            "application_behavior",
+            "upload_configuration"
+          ],
+          "required_value": "must_be_established"
+        }
+      ],
+      "remote_code_execution": [
+        {
+          "id": "condition_1",
+          "name": "default_servlet_writes_enabled",
+          "description": "Writes must be enabled for the Default Servlet.",
+          "configuration_evidence": [
+            "default_servlet.writes_enabled",
+            "default_servlet.readonly"
+          ],
+          "required_value": true
+        },
+        {
+          "id": "condition_2",
+          "name": "partial_put_enabled",
+          "description": "Partial PUT support must be enabled.",
+          "configuration_evidence": [
+            "default_servlet.allowPartialPut"
+          ],
+          "required_value": true
+        },
+        {
+          "id": "condition_3",
+          "name": "file_based_session_persistence",
+          "description": "The application must use Tomcat file-based session persistence with the default storage location.",
+          "configuration_evidence": [
+            "session_persistence.file_based_persistence",
+            "session_persistence.pathname",
+            "session_persistence.manager_class"
+          ],
+          "required_value": true
+        },
+        {
+          "id": "condition_4",
+          "name": "deserialization_library",
+          "description": "The application must include a library that may be leveraged in a deserialization attack.",
+          "configuration_evidence": [
+            "application_libraries.jar_files"
+          ],
+          "required_value": "must_be_identified"
+        }
+      ]
+    },
+    "remediation": {
+      "primary": "Upgrade Apache Tomcat to a fixed version.",
+      "recommended_tomcat_9_version": "9.0.99 or later",
+      "alternative_versions": [
+        "10.1.35 or later",
+        "11.0.3 or later"
+      ]
+    },
+    "validation": {
+      "version_check": "Verify the running Tomcat version is fixed.",
+      "configuration_check": "Recollect effective configuration.",
+      "vulnerability_scan": "Run Trivy again.",
+      "behavioral_check": "Verify that the vulnerable configuration or behavior is no longer present."
+    },
+    "source": {
+      "type": "vendor_advisory",
+      "vendor": "Apache Tomcat",
+      "url": "https://tomcat.apache.org/security-9",
+      "retrieved_for_project": "CVE-2025-24813"
+    }
+  },
+  "CVE-2024-50379": {
+    "cve_id": "CVE-2024-50379",
+    "product": {
+      "vendor": "Apache",
+      "name": "Tomcat",
+      "component": "DefaultServlet"
+    },
+    "affected_versions": {
+      "product": "Apache Tomcat",
+      "range": "9.0.0.M1 through 9.0.98"
+    },
+    "fixed_versions": {
+      "tomcat_9": "9.0.99",
+      "tomcat_10": "10.1.34",
+      "tomcat_11": "11.0.2"
+    },
+    "severity": "CRITICAL",
+    "description": "Time-of-check time-of-use (TOCTOU) race condition in Apache Tomcat DefaultServlet write operations on case-insensitive file systems (such as Windows) allows remote attackers to upload arbitrary files and achieve Remote Code Execution.",
+    "vulnerability": {
+      "title": "Apache Tomcat DefaultServlet TOCTOU Race Condition Remote Code Execution",
+      "type": [
+        "Time-of-check Time-of-use (TOCTOU) Race Condition",
+        "Remote Code Execution",
+        "Arbitrary File Upload"
+      ],
+      "cwe": [
+        "CWE-367",
+        "CWE-434"
+      ]
+    },
+    "conditions": {
+      "remote_code_execution": [
+        {
+          "id": "condition_1",
+          "name": "default_servlet_writes_enabled",
+          "description": "DefaultServlet must be explicitly configured with readonly=false to permit HTTP PUT requests.",
+          "configuration_evidence": [
+            "default_servlet.writes_enabled",
+            "default_servlet.readonly"
+          ],
+          "required_value": true
+        },
+        {
+          "id": "condition_2",
+          "name": "file_write_path_accessible",
+          "description": "Tomcat web application root or write target directory must accept write operations.",
+          "configuration_evidence": [
+            "default_servlet.allowPartialPut",
+            "default_servlet.writes_enabled"
+          ],
+          "required_value": true
+        }
+      ]
+    },
+    "remediation": {
+      "primary": "Upgrade Apache Tomcat to 9.0.99, 10.1.34, 11.0.2 or later, or set readonly=true in conf/web.xml.",
+      "recommended_tomcat_9_version": "9.0.99 or later",
+      "configuration_mitigation": "Set readonly to true for DefaultServlet in /opt/tomcat/conf/web.xml"
+    },
+    "validation": {
+      "version_check": "Verify Tomcat version is >= 9.0.99",
+      "behavioral_check": "Send HTTP PUT to ensure 405 Method Not Allowed is returned"
+    },
+    "source": {
+      "type": "vendor_advisory",
+      "vendor": "Apache Tomcat",
+      "url": "https://tomcat.apache.org/security-9.html"
+    }
+  },
+  "CVE-2024-56337": {
+    "cve_id": "CVE-2024-56337",
+    "product": {
+      "vendor": "Apache",
+      "name": "Tomcat",
+      "component": "DefaultServlet"
+    },
+    "affected_versions": {
+      "product": "Apache Tomcat",
+      "range": "9.0.0.M1 through 9.0.98"
+    },
+    "fixed_versions": {
+      "tomcat_9": "9.0.99",
+      "tomcat_10": "10.1.35",
+      "tomcat_11": "11.0.3"
+    },
+    "severity": "HIGH",
+    "description": "Incomplete fix for CVE-2024-50379 in Apache Tomcat allows remote code execution when DefaultServlet write is enabled on case-insensitive filesystems.",
+    "vulnerability": {
+      "title": "Apache Tomcat DefaultServlet TOCTOU Race Condition Bypass RCE",
+      "type": [
+        "Time-of-check Time-of-use (TOCTOU) Race Condition",
+        "Remote Code Execution"
+      ],
+      "cwe": [
+        "CWE-367"
+      ]
+    },
+    "conditions": {
+      "remote_code_execution": [
+        {
+          "id": "condition_1",
+          "name": "default_servlet_writes_enabled",
+          "description": "DefaultServlet must be explicitly configured with readonly=false.",
+          "configuration_evidence": [
+            "default_servlet.writes_enabled",
+            "default_servlet.readonly"
+          ],
+          "required_value": true
+        }
+      ]
+    },
+    "remediation": {
+      "primary": "Upgrade to Apache Tomcat 9.0.99 or later, or disable DefaultServlet write support.",
+      "configuration_mitigation": "Set readonly=true in web.xml"
+    },
+    "source": {
+      "type": "vendor_advisory",
+      "vendor": "Apache Tomcat"
+    }
+  },
+  "CVE-2020-1938": {
+    "cve_id": "CVE-2020-1938",
+    "product": {
+      "vendor": "Apache",
+      "name": "Tomcat",
+      "component": "AJP Connector"
+    },
+    "affected_versions": {
+      "product": "Apache Tomcat",
+      "range": "9.0.0.M1 through 9.0.30"
+    },
+    "fixed_versions": {
+      "tomcat_9": "9.0.31",
+      "tomcat_8_5": "8.5.51",
+      "tomcat_7": "7.0.100"
+    },
+    "severity": "HIGH",
+    "description": "When using the Apache JServ Protocol (AJP), Tomcat treats connections with higher trust than HTTP. If the AJP connector is exposed to untrusted clients without secret authentication, an attacker can read arbitrary files from webapps or achieve RCE via file inclusion.",
+    "vulnerability": {
+      "title": "Apache Tomcat AJP File Read/Inclusion (Ghostcat)",
+      "type": [
+        "Arbitrary File Read",
+        "File Inclusion",
+        "Remote Code Execution"
+      ],
+      "cwe": [
+        "CWE-200",
+        "CWE-98"
+      ]
+    },
+    "conditions": {
+      "arbitrary_file_read_and_rce": [
+        {
+          "id": "condition_1",
+          "name": "ajp_connector_active",
+          "description": "An AJP/1.3 Connector must be configured and active in server.xml.",
+          "configuration_evidence": [
+            "connectors"
+          ],
+          "required_value": "must_be_identified"
+        }
+      ]
+    },
+    "remediation": {
+      "primary": "Upgrade to Tomcat 9.0.31 or comment out the AJP Connector in server.xml if not in use.",
+      "configuration_mitigation": "Disable AJP connector or configure secretRequired=\"true\" with a strong secret."
+    },
+    "source": {
+      "type": "vendor_advisory",
+      "vendor": "Apache Tomcat"
+    }
+  },
+  "CVE-2017-12615": {
+    "cve_id": "CVE-2017-12615",
+    "product": {
+      "vendor": "Apache",
+      "name": "Tomcat",
+      "component": "DefaultServlet"
+    },
+    "affected_versions": {
+      "product": "Apache Tomcat",
+      "range": "7.0.0 through 7.0.81"
+    },
+    "fixed_versions": {
+      "tomcat_7": "7.0.82"
+    },
+    "severity": "HIGH",
+    "description": "When running on Windows with HTTP PUT enabled (via readonly=false in DefaultServlet), an attacker can upload arbitrary JSP files using trailing slashes or NTFS stream syntax, resulting in remote code execution.",
+    "vulnerability": {
+      "title": "Apache Tomcat Remote Code Execution via HTTP PUT",
+      "type": [
+        "Remote Code Execution",
+        "Arbitrary File Upload"
+      ],
+      "cwe": [
+        "CWE-434"
+      ]
+    },
+    "conditions": {
+      "remote_code_execution": [
+        {
+          "id": "condition_1",
+          "name": "default_servlet_writes_enabled",
+          "description": "DefaultServlet must be configured with readonly=false.",
+          "configuration_evidence": [
+            "default_servlet.writes_enabled",
+            "default_servlet.readonly"
+          ],
+          "required_value": true
+        }
+      ]
+    },
+    "remediation": {
+      "primary": "Upgrade to Tomcat 7.0.82 or ensure readonly=true in DefaultServlet.",
+      "configuration_mitigation": "Set readonly=true in web.xml."
+    },
+    "source": {
+      "type": "vendor_advisory",
+      "vendor": "Apache Tomcat"
+    }
+  },
+  "CVE-2026-27205": {
+    "cve_id": "CVE-2026-27205",
+    "product": {
+      "vendor": "Pallets",
+      "name": "Flask",
+      "component": "Session Management / Cookie Handling"
+    },
+    "affected_versions": {
+      "product": "Flask",
+      "range": "<= 3.1.2"
+    },
+    "fixed_versions": {
+      "flask": "3.1.3"
+    },
+    "severity": "LOW",
+    "vulnerability": {
+      "title": "Flask: Information disclosure via improper caching of session data",
+      "type": [
+        "Information Disclosure",
+        "Improper Cache Handling"
+      ],
+      "cwe": [
+        "CWE-524"
+      ]
+    },
+    "description": "Flask versions 3.1.2 and below may fail to set the Vary: Cookie header when accessing session objects using certain patterns (such as the Python 'in' operator), potentially leading to caching of sensitive session data.",
+    "remediation": {
+      "action": "upgrade_dependency",
+      "recommended_version": "3.1.3",
+      "guidance": "Upgrade Flask to version 3.1.3 or higher."
+    },
+    "source": {
+      "type": "trivy_offline_db",
+      "vendor": "Pallets / GitHub Advisory GHSA-68rp-wp8r-4726"
+    }
+  },
+  "CVE-2023-30861": {
+    "cve_id": "CVE-2023-30861",
+    "product": {
+      "vendor": "Pallets",
+      "name": "Flask",
+      "component": "Session Cookie / Vary Header"
+    },
+    "affected_versions": {
+      "product": "Flask",
+      "range": "< 2.2.5, < 2.3.2"
+    },
+    "fixed_versions": {
+      "flask_2_2": "2.2.5",
+      "flask_2_3": "2.3.2"
+    },
+    "severity": "HIGH",
+    "vulnerability": {
+      "title": "Flask: Possible disclosure of permanent session cookie due to missing Vary: Cookie header",
+      "type": [
+        "Information Disclosure",
+        "Session Cookie Handling"
+      ],
+      "cwe": [
+        "CWE-524",
+        "CWE-384"
+      ]
+    },
+    "description": "Flask versions prior to 2.2.5 and 2.3.2 lack a Vary: Cookie header in responses when permanent sessions are used, which could lead to caching proxies serving one user's session cookie to another.",
+    "remediation": {
+      "action": "upgrade_dependency",
+      "recommended_version": "2.3.2 or 2.2.5",
+      "guidance": "Upgrade Flask to version 2.3.2, 2.2.5, or higher."
+    },
+    "source": {
+      "type": "trivy_offline_db",
+      "vendor": "Pallets / GitHub Advisory GHSA-m2qf-hxjv-5gpq"
+    }
+  }
+}

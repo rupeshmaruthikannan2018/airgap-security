@@ -1,0 +1,78 @@
+You are evaluating whether a remediation performed on an Apache Tomcat server was successful.
+
+This is an evidence-based assessment.
+
+Do NOT simply repeat the CVE description.
+Do NOT assume that the vulnerability is fully fixed merely because one configuration setting was changed.
+Distinguish clearly between:
+1. configuration mitigation,
+2. behavioral mitigation,
+3. software patching,
+4. remaining or unknown vulnerability conditions.
+
+CVE:
+CVE-2025-24813
+
+CVE KNOWLEDGE:
+Fixed Tomcat 9.x version: 9.0.99
+
+BEFORE REMEDIATION:
+- Tomcat version: 9.0.98
+- DefaultServlet readonly: false
+- DefaultServlet writes enabled: true
+- allowPartialPut: true
+- File-based session persistence: true
+- No application deserialization JAR was found
+- Controlled PUT request: HTTP 201 Created
+- PUT behavior: WRITE_ACCEPTED
+- CVE write condition: SATISFIED
+
+REMEDIATION PERFORMED:
+- DefaultServlet readonly was changed from false to true.
+- Tomcat was restarted.
+
+AFTER REMEDIATION:
+- Tomcat version: 9.0.98
+- DefaultServlet readonly: true
+- DefaultServlet writes enabled: false
+- allowPartialPut: true
+- Tomcat service: reachable
+- HTTP service status: 200
+- Controlled PUT request: HTTP 405 Method Not Allowed
+- PUT behavior: WRITE_BLOCKED
+- Current CVE write condition: NOT_SATISFIED
+- Tomcat software version was NOT upgraded.
+- Fixed Tomcat 9.x version remains 9.0.99.
+
+TASK:
+
+Determine whether the remediation was successful.
+
+Explain:
+1. What changed between BEFORE and AFTER.
+2. Whether the DefaultServlet write condition was mitigated.
+3. Whether the behavioral test proves the tested write operation is blocked.
+4. Whether the Tomcat software itself was patched.
+5. What remains unresolved or unknown.
+6. Whether the result should be considered a configuration mitigation, a complete software patch, or both.
+
+Return ONLY valid JSON using exactly this structure:
+
+{
+  "remediation_assessment": "",
+  "configuration_mitigation": {
+    "status": "",
+    "reason": ""
+  },
+  "behavioral_validation": {
+    "status": "",
+    "reason": ""
+  },
+  "software_patch": {
+    "status": "",
+    "reason": ""
+  },
+  "remaining_conditions": [],
+  "final_reasoning": "",
+  "confidence": ""
+}

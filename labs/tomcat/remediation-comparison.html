@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Remediation Comparison - CVE-2025-24813</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f6f8;
+        color: #17202a;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 24px 50px;
+    }
+    .header {
+        background: #17202a;
+        color: white;
+        padding: 32px;
+        border-radius: 14px;
+        margin-bottom: 24px;
+    }
+    .header h1 {
+        margin: 0 0 8px;
+        font-size: 30px;
+    }
+    .header p {
+        margin: 6px 0;
+        opacity: 0.9;
+    }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-bottom: 24px;
+    }
+    .card {
+        background: white;
+        border-radius: 12px;
+        padding: 22px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    }
+    .card h3 {
+        margin-top: 0;
+        font-size: 15px;
+        color: #5d6d7e;
+    }
+    .big {
+        font-size: 23px;
+        font-weight: bold;
+    }
+    .table-card {
+        background: white;
+        border-radius: 12px;
+        padding: 22px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+        overflow-x: auto;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 14px 12px;
+        border-bottom: 1px solid #e5e7e9;
+        text-align: left;
+        vertical-align: top;
+    }
+    th {
+        background: #f8f9f9;
+    }
+    .pass {
+        font-weight: bold;
+        color: #196f3d;
+    }
+    .fail {
+        font-weight: bold;
+        color: #922b21;
+    }
+    .neutral {
+        font-weight: bold;
+        color: #566573;
+    }
+    .flow {
+        margin-top: 24px;
+        background: white;
+        border-radius: 12px;
+        padding: 28px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+        text-align: center;
+    }
+    .flow span {
+        display: inline-block;
+        padding: 14px 18px;
+        margin: 6px;
+        border-radius: 8px;
+        background: #ecf0f1;
+        font-weight: bold;
+    }
+    .arrow {
+        background: transparent !important;
+        font-size: 24px;
+    }
+    .conclusion {
+        margin-top: 24px;
+        padding: 24px;
+        border-left: 5px solid #566573;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        line-height: 1.6;
+    }
+    @media (max-width: 800px) {
+        .grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="header">
+    <h1>Remediation Before / After Comparison</h1>
+    <p><strong>CVE:</strong> CVE-2025-24813</p>
+    <p><strong>System:</strong> Apache Tomcat</p>
+    <p><strong>Purpose:</strong> Demonstrate configuration mitigation and independent validation</p>
+</div>
+
+<div class="grid">
+    <div class="card">
+        <h3>BEFORE REMEDIATION</h3>
+        <div class="big">9.0.98</div>
+        <p>DefaultServlet writes enabled</p>
+        <p>PUT → <strong>201 Created</strong></p>
+    </div>
+
+    <div class="card">
+        <h3>AFTER REMEDIATION</h3>
+        <div class="big">9.0.98</div>
+        <p>DefaultServlet writes disabled</p>
+        <p>PUT → <strong>405 Method Not Allowed</strong></p>
+    </div>
+
+    <div class="card">
+        <h3>FINAL ASSESSMENT</h3>
+        <div class="big">MITIGATED_BUT_VERSION_STILL_AFFECTED</div>
+        <p>Fixed 9.x version: <strong>9.0.99</strong></p>
+    </div>
+</div>
+
+<div class="table-card">
+    <h2>Evidence Comparison</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Evidence</th>
+                <th>Before</th>
+                <th>After</th>
+                <th>Interpretation</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        <tr>
+            <td><strong>Tomcat version</strong></td>
+            <td class="neutral">9.0.98</td>
+            <td class="neutral">9.0.98</td>
+            <td>Software version remained unchanged</td>
+        </tr>
+        
+        <tr>
+            <td><strong>DefaultServlet readonly</strong></td>
+            <td class="fail">NO</td>
+            <td class="pass">YES</td>
+            <td>Write access was disabled</td>
+        </tr>
+        
+        <tr>
+            <td><strong>DefaultServlet writes enabled</strong></td>
+            <td class="pass">YES</td>
+            <td class="fail">NO</td>
+            <td>DefaultServlet write capability was disabled</td>
+        </tr>
+        
+        <tr>
+            <td><strong>Partial PUT</strong></td>
+            <td class="pass">YES</td>
+            <td class="pass">YES</td>
+            <td>Still uses Tomcat default</td>
+        </tr>
+        
+        <tr>
+            <td><strong>File-based session persistence</strong></td>
+            <td class="pass">YES</td>
+            <td class="pass">YES</td>
+            <td>No change from configuration mitigation</td>
+        </tr>
+        
+        <tr>
+            <td><strong>Application JARs found</strong></td>
+            <td class="neutral">0</td>
+            <td class="neutral">0</td>
+            <td>Application library inventory</td>
+        </tr>
+        
+        <tr>
+            <td><strong>Controlled PUT behavior</strong></td>
+            <td class="fail">WRITE_ACCEPTED</td>
+            <td class="pass">WRITE_BLOCKED</td>
+            <td>HTTP 201 → HTTP 405</td>
+        </tr>
+        
+        <tr>
+            <td><strong>Configuration validation</strong></td>
+            <td class="neutral">Not applicable</td>
+            <td class="pass">PASS</td>
+            <td>Independent validator</td>
+        </tr>
+        
+        <tr>
+            <td><strong>Behavioral validation</strong></td>
+            <td class="neutral">Not applicable</td>
+            <td class="pass">PASS</td>
+            <td>Independent validator</td>
+        </tr>
+        
+        <tr>
+            <td><strong>Service validation</strong></td>
+            <td class="neutral">Not applicable</td>
+            <td class="pass">PASS</td>
+            <td>Tomcat remained reachable</td>
+        </tr>
+        
+        <tr>
+            <td><strong>Software patch status</strong></td>
+            <td class="neutral">NOT PATCHED</td>
+            <td class="fail">NOT_PATCHED</td>
+            <td>Fixed 9.x version: 9.0.99</td>
+        </tr>
+        
+        </tbody>
+    </table>
+</div>
+
+<div class="flow">
+    <h2>Behavioral Evidence</h2>
+    <span>BEFORE</span>
+    <span class="arrow">→</span>
+    <span>PUT 201 Created</span>
+    <span class="arrow">→</span>
+    <span>Remediation</span>
+    <span class="arrow">→</span>
+    <span>PUT 405 Blocked</span>
+    <span class="arrow">→</span>
+    <span>AFTER</span>
+</div>
+
+<div class="conclusion">
+    <h2>Conclusion</h2>
+    <p>
+        The DefaultServlet configuration mitigation was successfully applied.
+        Before remediation, the server accepted the controlled PUT request.
+        After remediation, the same type of controlled write operation was blocked
+        with HTTP 405, while the Tomcat service remained reachable.
+    </p>
+    <p>
+        The underlying Tomcat software was not upgraded during this remediation.
+        The server remains on version 9.0.98, while the fixed
+        Tomcat 9.x version is 9.0.99. Therefore the result is
+        <strong>MITIGATED_BUT_VERSION_STILL_AFFECTED</strong>, rather than a claim that the
+        software itself has been fully patched.
+    </p>
+</div>
+
+</div>
+</body>
+</html>

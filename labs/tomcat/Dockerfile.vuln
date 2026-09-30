@@ -1,0 +1,3 @@
+FROM airgap-tomcat:9.0.98
+
+RUN sed -i '0,/<param-name>listings<\/param-name>/s//<param-name>readonly<\/param-name>\n            <param-value>false<\/param-value>\n        <\/init-param>\n        <init-param>\n            <param-name>listings<\/param-name>/' /opt/tomcat/conf/web.xml

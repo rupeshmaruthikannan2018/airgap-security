@@ -1,0 +1,18 @@
+{
+  "status": "dry_run",
+  "container": "tomcat-9.0.98-vuln",
+  "actions_requested": 1,
+  "actions_processed": 1,
+  "results": [
+    {
+      "action": {
+        "action": "Upgrade Apache Tomcat to version 9.0.99 or later for the 9.x branch.",
+        "reason": "The vendor has fixed CVE-2025-24813 in Tomcat 9.0.99, 10.1.35, and 11.0.3. Upgrading removes the vulnerable code path.",
+        "type": "UPGRADE"
+      },
+      "mode": "manual_recommendation",
+      "applied": false,
+      "message": "Remediation type 'UPGRADE' is not enabled for automatic execution. It is recorded for manual handling."
+    }
+  ]
+}

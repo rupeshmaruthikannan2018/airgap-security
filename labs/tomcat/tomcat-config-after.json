@@ -1,0 +1,50 @@
+{
+  "collector": "tomcat_config_collector",
+  "container": "tomcat-9.0.98-vuln",
+  "tomcat": {
+    "version": null,
+    "raw": ""
+  },
+  "effective_configuration": {
+    "default_servlet": {
+      "readonly": true,
+      "readonly_source": "Tomcat default",
+      "writes_enabled": false,
+      "allowPartialPut": true,
+      "allowPartialPut_source": "Tomcat default",
+      "listings": false,
+      "listings_source": "Tomcat default"
+    },
+    "session_persistence": {
+      "manager_configured": false,
+      "manager_class": "org.apache.catalina.session.StandardManager",
+      "pathname": "SESSIONS.ser",
+      "file_based_persistence": true,
+      "persistence_source": "Tomcat default"
+    },
+    "application_libraries": {
+      "jar_files": [],
+      "count": 0
+    },
+    "deployed_applications": [],
+    "connectors": []
+  },
+  "raw_configuration": {
+    "web_xml": {
+      "path": "/opt/tomcat/conf/web.xml",
+      "content": ""
+    },
+    "context_xml": {
+      "path": "/opt/tomcat/conf/context.xml",
+      "content": ""
+    },
+    "server_xml": {
+      "path": "/opt/tomcat/conf/server.xml",
+      "content": ""
+    },
+    "tomcat_users_xml": {
+      "path": "/opt/tomcat/conf/tomcat-users.xml",
+      "content": ""
+    }
+  }
+}

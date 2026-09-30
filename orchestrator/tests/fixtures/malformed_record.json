@@ -1,0 +1,10 @@
+{
+  "format": "NVD_CVE",
+  "version": "2.0",
+  "vulnerabilities": [
+    {
+      "corrupted_entry": true,
+      "missing_cve_object": 123
+    }
+  ]
+}

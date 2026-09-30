@@ -1,0 +1,38 @@
+{
+  "timestamp": "2026-09-29T12:26:08Z",
+  "acquisition_package": "C:\\airgap-security\\cve_data_production",
+  "target_database": "C:\\airgap-security\\orchestrator\\cve_database_production.db",
+  "manifest_verified": true,
+  "disk_space_before_gb": 129.92,
+  "disk_space_after_gb": 123.96,
+  "final_db_size_mb": 6431.13,
+  "final_wal_size_mb": 49.39,
+  "peak_rss_mb": 779.62,
+  "peak_heap_mb": 336.06,
+  "total_duration_seconds": 2563.3156512000132,
+  "total_duration_formatted": "00:42:22",
+  "counts": {
+    "total_cves": 398893,
+    "active_cves": 380475,
+    "rejected_cves": 18418,
+    "no_cpe_count": 62462,
+    "nvd_record_count": 398893,
+    "cve_list_record_count": 398554,
+    "linked_cve_count": 398554,
+    "cves_with_cpe": 318013,
+    "cves_with_affected_versions": 379517,
+    "cves_with_cvss": 377244,
+    "cves_with_cwe": 374859,
+    "cves_with_references": 380479
+  },
+  "cve_2025_24813_verified": true,
+  "benchmark": {
+    "cve": "CVE-2025-24813",
+    "repetitions": 100,
+    "mean_ms": 1.134,
+    "median_ms": 1.048,
+    "p95_ms": 1.973,
+    "target_ms": 100.0,
+    "target_met": true
+  }
+}
