@@ -34,14 +34,14 @@ profile = {
 }
 
 
-result = analyze_finding(
-    finding,
-    profile
-)
+if __name__ == "__main__":
+    result = analyze_finding(
+        finding,
+        profile
+    )
 
+    print("AI ANALYSIS RESULT")
+    print("=" * 40)
 
-print("AI ANALYSIS RESULT")
-print("=" * 40)
-
-for key, value in result.items():
-    print(f"{key}: {value}")
+    for key, value in result.items():
+        print(f"{key}: {value}")

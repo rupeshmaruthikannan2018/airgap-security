@@ -845,7 +845,7 @@ def generate_ollama_response(prompt, task="analysis"):
         "stream": False,
         "format": schema,
         "options": {
-            "num_predict": 5000,
+            "num_predict": 1200,
             "temperature": 0.1
         }
     }
@@ -863,7 +863,7 @@ def generate_ollama_response(prompt, task="analysis"):
         response = requests.post(
             OLLAMA_URL,
             json=payload,
-            timeout=300
+            timeout=int(os.getenv("OLLAMA_TIMEOUT", "20"))
         )
 
         response.raise_for_status()
@@ -931,11 +931,21 @@ def generate_response(prompt, task="analysis"):
         )
 
     if LLM_PROVIDER == "sglang":
-
-        return generate_sglang_response(
-            prompt,
-            task=task
-        )
+        try:
+            return generate_sglang_response(
+                prompt,
+                task=task
+            )
+        except Exception as e:
+            print(f"[LLM] SGLang provider failed ({e}). Checking local Ollama...")
+            try:
+                return generate_ollama_response(
+                    prompt,
+                    task=task
+                )
+            except Exception as o_err:
+                print(f"[LLM] Ollama fallback failed ({o_err}).")
+                raise
 
     if LLM_PROVIDER == "nvidia":
 

@@ -1,7 +1,8 @@
 from local_llm import generate_response
 
 
-prompt = """
+if __name__ == "__main__":
+    prompt = """
 Analyze this security finding.
 
 Finding:
@@ -21,11 +22,10 @@ result = subprocess.check_output(
 Return the required structured security assessment.
 """
 
+    result = generate_response(prompt)
 
-result = generate_response(prompt)
+    print("\nNVIDIA TEST RESULT")
+    print("=" * 60)
 
-print("\nNVIDIA TEST RESULT")
-print("=" * 60)
-
-for key, value in result.items():
-    print(f"{key}: {value}")
+    for key, value in result.items():
+        print(f"{key}: {value}")

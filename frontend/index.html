@@ -25,39 +25,46 @@
 
         * { box-sizing: border-box; }
 
+        html {
+            font-size: 16px;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
-            padding: 2rem 1rem;
+            padding: 2.5rem 1.5rem;
             display: flex;
             justify-content: center;
             align-items: flex-start;
             min-height: 100vh;
+            font-size: 1.05rem;
+            line-height: 1.6;
         }
 
         .container {
             width: 100%;
-            max-width: 900px;
+            max-width: 1400px;
             background-color: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: 1rem;
-            padding: 2rem;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+            border-radius: 1.25rem;
+            padding: 2.75rem 3.25rem;
+            box-shadow: 0 20px 30px -5px rgba(0, 0, 0, 0.5), 0 10px 15px -5px rgba(0, 0, 0, 0.4);
         }
 
         .header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             border-bottom: 1px solid var(--card-border);
-            padding-bottom: 1.5rem;
+            padding-bottom: 1.75rem;
         }
 
         .header h1 {
             margin: 0;
-            font-size: 1.85rem;
-            font-weight: 700;
+            font-size: 2.35rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
             background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -65,28 +72,28 @@
 
         .header p {
             color: var(--text-muted);
-            margin-top: 0.5rem;
-            font-size: 0.95rem;
+            margin-top: 0.65rem;
+            font-size: 1.1rem;
         }
 
         .nav-tabs {
             display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1.75rem;
+            gap: 0.65rem;
+            margin-bottom: 2.25rem;
             background: rgba(15, 23, 42, 0.6);
-            padding: 0.35rem;
-            border-radius: 0.5rem;
+            padding: 0.45rem;
+            border-radius: 0.65rem;
             border: 1px solid var(--card-border);
         }
 
         .nav-tab {
             flex: 1;
-            padding: 0.65rem 1rem;
+            padding: 0.85rem 1.25rem;
             background: transparent;
             color: var(--text-muted);
             border: none;
-            border-radius: 0.375rem;
-            font-size: 0.9rem;
+            border-radius: 0.5rem;
+            font-size: 1.025rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -101,7 +108,7 @@
         .nav-tab.active {
             background: var(--primary);
             color: white;
-            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
         }
 
         .tab-content {
@@ -115,25 +122,25 @@
         .card {
             background: rgba(15, 23, 42, 0.5);
             border: 1px solid var(--card-border);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+            border-radius: 0.875rem;
+            padding: 2rem 2.25rem;
+            margin-bottom: 2rem;
         }
 
         .card h2 {
             margin-top: 0;
-            font-size: 1.25rem;
+            font-size: 1.4rem;
             color: #e2e8f0;
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 0.75rem;
         }
 
         .badge {
             display: inline-block;
-            padding: 0.2rem 0.6rem;
+            padding: 0.3rem 0.75rem;
             border-radius: 9999px;
-            font-size: 0.75rem;
+            font-size: 0.825rem;
             font-weight: 700;
             letter-spacing: 0.04em;
             text-transform: uppercase;
@@ -147,18 +154,18 @@
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            gap: 1.5rem;
+            margin-bottom: 1.25rem;
         }
 
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 0.4rem;
+            gap: 0.5rem;
         }
 
         .form-group label {
-            font-size: 0.825rem;
+            font-size: 0.925rem;
             font-weight: 600;
             color: var(--text-muted);
             text-transform: uppercase;
@@ -167,12 +174,12 @@
 
         .input-field {
             width: 100%;
-            padding: 0.65rem 0.85rem;
+            padding: 0.8rem 1rem;
             border: 1px solid var(--card-border);
-            border-radius: 0.375rem;
+            border-radius: 0.45rem;
             background-color: var(--bg-color);
             color: var(--text-main);
-            font-size: 0.95rem;
+            font-size: 1.025rem;
             font-family: inherit;
         }
 
@@ -185,16 +192,16 @@
             background-color: var(--primary);
             color: white;
             border: none;
-            padding: 0.75rem 1.25rem;
-            font-size: 0.95rem;
+            padding: 0.85rem 1.5rem;
+            font-size: 1.025rem;
             font-weight: 600;
-            border-radius: 0.375rem;
+            border-radius: 0.45rem;
             cursor: pointer;
             transition: all 0.2s ease;
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
             text-decoration: none;
         }
 
@@ -216,8 +223,8 @@
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             border-top: 2px solid #ffffff;
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             animation: spin 0.8s linear infinite;
             display: none;
         }
@@ -231,39 +238,41 @@
 
         .stat-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-            margin: 1.25rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.25rem;
+            margin: 1.5rem 0;
         }
 
         .stat-box {
             background: var(--bg-color);
             border: 1px solid var(--card-border);
-            border-radius: 0.5rem;
-            padding: 1rem;
+            border-radius: 0.65rem;
+            padding: 1.25rem 1rem;
             text-align: center;
         }
 
         .stat-box .title {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
             text-transform: uppercase;
             font-weight: 600;
-            margin-bottom: 0.35rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.04em;
         }
 
         .stat-box .number {
-            font-size: 1.75rem;
-            font-weight: 700;
+            font-size: 2.25rem;
+            font-weight: 800;
             color: #60a5fa;
         }
 
         .verification-card {
-            border-left: 4px solid var(--primary);
-            background: rgba(0, 0, 0, 0.2);
-            padding: 1rem;
-            border-radius: 0.375rem;
-            margin-bottom: 0.75rem;
+            border-left: 5px solid var(--primary);
+            background: rgba(0, 0, 0, 0.25);
+            padding: 1.25rem 1.4rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
         }
 
         .verification-card.passed {
@@ -274,27 +283,30 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
         }
 
         .code-snippet {
             background: var(--code-bg);
             border: 1px solid var(--card-border);
-            border-radius: 0.375rem;
-            padding: 0.75rem;
+            border-radius: 0.45rem;
+            padding: 0.9rem 1.1rem;
             font-family: ui-monospace, SFMono-Regular, monospace;
-            font-size: 0.85rem;
+            font-size: 0.95rem;
             color: #38bdf8;
             overflow-x: auto;
-            margin: 0.5rem 0;
+            margin: 0.65rem 0;
+            line-height: 1.5;
         }
 
         .alert-box {
-            padding: 0.85rem 1rem;
-            border-radius: 0.375rem;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+            padding: 1rem 1.35rem;
+            border-radius: 0.5rem;
+            font-size: 1.025rem;
+            margin-bottom: 1.25rem;
             display: none;
+            line-height: 1.5;
         }
 
         .alert-box.active { display: block; }
@@ -305,14 +317,103 @@
         .isolation-notice {
             background: rgba(245, 158, 11, 0.08);
             border: 1px solid rgba(245, 158, 11, 0.25);
-            border-radius: 0.5rem;
-            padding: 0.85rem 1rem;
-            margin-bottom: 1.25rem;
-            font-size: 0.875rem;
+            border-radius: 0.65rem;
+            padding: 1.1rem 1.35rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.025rem;
             color: #fde68a;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 1rem;
+            line-height: 1.5;
+        }
+
+        .pill-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            color: #93c5fd;
+            padding: 0.45rem 0.95rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .pill-btn:hover {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .prereq-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--card-border);
+            border-left: 5px solid var(--primary);
+            border-radius: 0.65rem;
+            padding: 1.5rem 1.75rem;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+            font-size: 1rem;
+        }
+
+        .prereq-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.65rem;
+            gap: 1rem;
+        }
+
+        .prereq-prop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.85rem;
+            margin: 1rem 0;
+            background: rgba(0, 0, 0, 0.25);
+            padding: 1rem 1.2rem;
+            border-radius: 0.45rem;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .prereq-prop {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .prereq-prop-label {
+            font-size: 0.825rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        .prereq-prop-value {
+            font-size: 1rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .provenance-box {
+            background: var(--code-bg);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 0.45rem;
+            padding: 0.9rem 1.1rem;
+            margin-top: 0.85rem;
+            font-size: 0.925rem;
+            line-height: 1.5;
+        }
+
+        .unknown-card {
+            background: rgba(245, 158, 11, 0.05);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            border-left: 5px solid var(--warn);
+            border-radius: 0.65rem;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
         }
     </style>
 </head>
@@ -330,6 +431,7 @@
             <button class="nav-tab active" onclick="switchTab('tab-tomcat')">Live Tomcat & Sandbox</button>
             <button class="nav-tab" onclick="switchTab('tab-upload')">Offline Artifact Scan</button>
             <button class="nav-tab" onclick="switchTab('tab-cve')">CVE Database Explorer</button>
+            <button class="nav-tab" id="tab-prereq-nav-btn" onclick="switchTab('tab-prereq')">CVE Prerequisite Analyzer</button>
         </div>
 
         <div id="status-message" class="alert-box"></div>
@@ -399,17 +501,17 @@
                             <strong style="color: #ef4444; font-size: 1.1rem;" id="identified-cve">CVE-2025-24813</strong>
                             <span class="badge badge-danger" id="identified-severity" style="margin-left: 0.5rem;">CRITICAL</span>
                         </div>
-                        <a id="btn-view-tomcat-report" href="/report/tomcat" target="_blank" class="btn" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">
-                            View Contextual Report &#8599;
+                        <a id="btn-view-tomcat-report" href="/report/tomcat" target="_blank" class="btn btn-purple" style="padding: 0.65rem 1.35rem; font-size: 1rem;">
+                            <span>📄</span> View Vulnerability Report &#8599;
                         </a>
                     </div>
-                    <p id="identified-title" style="color: var(--text-muted); font-size: 0.875rem; margin: 0.5rem 0 0 0;">
+                    <p id="identified-title" style="color: var(--text-muted); font-size: 1rem; margin: 0.6rem 0 0 0;">
                         Tomcat DefaultServlet Partial PUT RCE / Path Equivalence
                     </p>
                 </div>
 
                 <div id="nuclei-matches-container">
-                    <strong style="font-size: 0.85rem; color: #a78bfa; text-transform: uppercase;">Nuclei Live HTTP Detections:</strong>
+                    <strong style="font-size: 0.95rem; color: #a78bfa; text-transform: uppercase;">Nuclei Live HTTP Detections:</strong>
                     <div id="nuclei-matches-list" style="margin-top: 0.5rem;"></div>
                 </div>
             </div>
@@ -472,40 +574,139 @@
 
         <!-- TAB 2: OFFLINE ARTIFACT SCAN -->
         <div id="tab-upload" class="tab-content">
+            <!-- 1. Upload Card -->
             <div class="card">
-                <h2><span>&#128193;</span> Upload Offline Artifact</h2>
-                <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1rem;">
-                    Upload a ZIP of source code, server configuration, or network logs (.log, .txt, .jsonl).
+                <h2><span>📁</span> Generic ZIP &amp; Folder Scanning Pipeline</h2>
+                <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1.25rem;">
+                    Upload ANY project archive (<code>.zip</code>), source directory, or configuration bundle. 
+                    The air-gapped pipeline safely isolates, profiles, dynamically plans scanners, correlates findings, 
+                    and performs CVE Phase B &amp; threat intelligence evaluation.
                 </p>
                 <form id="upload-form">
-                    <div style="margin-bottom: 1rem;">
-                        <input type="file" id="file-input" class="input-field" accept=".zip,.log,.txt,.jsonl" required>
+                    <div style="background: rgba(0,0,0,0.25); border: 2px dashed var(--card-border); border-radius: 0.5rem; padding: 1.5rem; text-align: center; margin-bottom: 1rem;">
+                        <input type="file" id="file-input" class="input-field" accept=".zip,.log,.txt,.jsonl" required style="max-width: 400px; margin: 0 auto; display: block;">
+                        <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.5rem;">
+                            Supports .ZIP archives (Zip Slip protected, bomb protected, symlink sanitized) and logs
+                        </div>
                     </div>
                     <button type="submit" id="upload-btn" class="btn">
-                        <span class="btn-text">Upload Artifact</span>
+                        <span class="btn-text">Upload &amp; Profile Archive</span>
                         <div class="spinner"></div>
                     </button>
                 </form>
             </div>
 
-            <div class="card" id="step-scan" style="opacity: 0.5; pointer-events: none;">
-                <h2><span>&#9889;</span> Execute Autonomous Scan</h2>
-                <p id="routing-summary" style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1rem;">
-                    Upload an artifact to begin autonomous analysis.
-                </p>
-                <button id="scan-btn" class="btn btn-purple" disabled>
-                    <span class="btn-text">Start Scan</span>
-                    <div class="spinner"></div>
-                </button>
+            <!-- 2. Application Profile & Scan Plan Card (Section 13) -->
+            <div class="card" id="step-scan" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h2 style="margin: 0;"><span>⚡</span> Artifact Profile &amp; Scanner Plan</h2>
+                    <span class="badge badge-success" id="profile-status-badge">PROFILE READY</span>
+                </div>
+
+                <div class="stat-grid" style="margin-top: 0;">
+                    <div class="stat-box" style="text-align: left;">
+                        <div class="title">File</div>
+                        <div id="disp-file" style="font-size: 0.95rem; font-weight: 700; color: #93c5fd; word-break: break-all;">-</div>
+                    </div>
+                    <div class="stat-box" style="text-align: left;">
+                        <div class="title">SHA256</div>
+                        <div id="disp-sha256" style="font-size: 0.8rem; font-family: ui-monospace, monospace; color: #cbd5e1; word-break: break-all;">-</div>
+                    </div>
+                    <div class="stat-box" style="text-align: left;">
+                        <div class="title">Application</div>
+                        <div id="disp-app" style="font-size: 1rem; font-weight: 700; color: #34d399;">-</div>
+                    </div>
+                </div>
+
+                <!-- Detected Items -->
+                <div style="margin: 1rem 0; background: rgba(0,0,0,0.25); border: 1px solid var(--card-border); border-radius: 0.5rem; padding: 1rem;">
+                    <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; color: var(--text-muted); margin-bottom: 0.5rem;">
+                        Detected Evidence:
+                    </div>
+                    <div id="disp-detected-tags" style="display: flex; gap: 0.5rem; flex-wrap: wrap;"></div>
+                </div>
+
+                <!-- Scan Plan Checklist (Section 13) -->
+                <div style="margin: 1rem 0; background: rgba(0,0,0,0.3); border: 1px solid var(--card-border); border-radius: 0.5rem; padding: 1rem;">
+                    <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; color: var(--text-muted); margin-bottom: 0.75rem;">
+                        Dynamic Scan Plan:
+                    </div>
+                    <div id="disp-scan-plan" style="display: flex; flex-direction: column; gap: 0.5rem;"></div>
+                </div>
+
+                <div style="display: flex; gap: 1rem; align-items: center; margin-top: 1.25rem;">
+                    <button id="scan-btn" class="btn btn-purple">
+                        <span>🚀</span>
+                        <span class="btn-text">Execute Planned Scanners</span>
+                        <div class="spinner"></div>
+                    </button>
+                    <span id="scan-target-note" style="color: var(--text-muted); font-size: 0.85rem;"></span>
+                </div>
             </div>
 
+            <!-- 3. Scan Progress Checklist (Section 13) -->
+            <div class="card" id="step-progress" style="display: none;">
+                <h2><span>⏱️</span> Scan Progress</h2>
+                <div id="progress-steps-list" style="display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1rem;">
+                    <div class="progress-item" id="prog-extract" style="display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.85rem; background: rgba(0,0,0,0.2); border-radius: 0.375rem;">
+                        <span>📦 1. Extraction (Secure archive extraction, Zip Slip defense)</span>
+                        <span class="status-indicator">⏳ Pending</span>
+                    </div>
+                    <div class="progress-item" id="prog-profile" style="display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.85rem; background: rgba(0,0,0,0.2); border-radius: 0.375rem;">
+                        <span>🔍 2. Profiling (Application architecture inspection)</span>
+                        <span class="status-indicator">⏳ Pending</span>
+                    </div>
+                    <div class="progress-item" id="prog-trivy" style="display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.85rem; background: rgba(0,0,0,0.2); border-radius: 0.375rem;">
+                        <span>🛡️ 3. Trivy (Filesystem vulnerability, secret &amp; config scanning)</span>
+                        <span class="status-indicator">⏳ Pending</span>
+                    </div>
+                    <div class="progress-item" id="prog-semgrep" style="display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.85rem; background: rgba(0,0,0,0.2); border-radius: 0.375rem;">
+                        <span>🔎 4. Semgrep (Static code vulnerability analysis with local rules)</span>
+                        <span class="status-indicator">⏳ Pending</span>
+                    </div>
+                    <div class="progress-item" id="prog-nuclei" style="display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.85rem; background: rgba(0,0,0,0.2); border-radius: 0.375rem;">
+                        <span>⚡ 5. Nuclei (Dynamic target validation)</span>
+                        <span class="status-indicator">— No dynamic target</span>
+                    </div>
+                    <div class="progress-item" id="prog-nmap" style="display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.85rem; background: rgba(0,0,0,0.2); border-radius: 0.375rem;">
+                        <span>🌐 6. Nmap (Network host scanning)</span>
+                        <span class="status-indicator">— No network target</span>
+                    </div>
+                    <div class="progress-item" id="prog-eval" style="display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.85rem; background: rgba(0,0,0,0.2); border-radius: 0.375rem;">
+                        <span>🔬 7. CVE Evaluation (Phase B prerequisite &amp; applicability checks)</span>
+                        <span class="status-indicator">⏳ Pending</span>
+                    </div>
+                    <div class="progress-item" id="prog-threat" style="display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.85rem; background: rgba(0,0,0,0.2); border-radius: 0.375rem;">
+                        <span>📊 8. Threat Intelligence (CISA KEV &amp; EPSS enrichment)</span>
+                        <span class="status-indicator">⏳ Pending</span>
+                    </div>
+                    <div class="progress-item" id="prog-report" style="display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.85rem; background: rgba(0,0,0,0.2); border-radius: 0.375rem;">
+                        <span>📋 9. Report (Unified report.html generation)</span>
+                        <span class="status-indicator">⏳ Pending</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Findings & Manifest Summary Card -->
             <div id="upload-results" class="card" style="display: none;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                    <h2><span>&#128203;</span> Findings Summary</h2>
-                    <a id="btn-view-upload-report" href="#" target="_blank" class="btn" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">
-                        View Full HTML Report &#8599;
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <h2 style="margin: 0;"><span>📋</span> Unified Scan Results</h2>
+                        <div id="findings-count-summary" style="font-size: 0.95rem; color: var(--text-muted); margin-top: 0.35rem;"></div>
+                    </div>
+                    <a id="btn-view-upload-report" href="#" target="_blank" class="btn btn-purple" style="font-size: 1.05rem; padding: 0.85rem 1.6rem;">
+                        <span>📄</span> Open Unified Vulnerability Report &#8599;
                     </a>
                 </div>
+
+                <!-- Collapsible Machine-Readable Scan Manifest (Section 12) -->
+                <details style="margin-bottom: 1.5rem; background: rgba(3, 7, 18, 0.6); border: 1px solid var(--card-border); border-radius: 0.5rem; padding: 0.85rem 1.1rem;">
+                    <summary style="font-weight: 600; font-size: 0.95rem; color: #93c5fd; cursor: pointer; user-select: none;">
+                        ▶ Machine-Readable Scan Manifest (<code>scan_manifest.json</code>)
+                    </summary>
+                    <pre id="upload-manifest-json" class="code-snippet" style="margin-top: 0.75rem; max-height: 320px; overflow-y: auto; white-space: pre-wrap; font-size: 0.9rem;"></pre>
+                </details>
+
                 <div id="upload-findings-list"></div>
             </div>
         </div>
@@ -514,14 +715,162 @@
         <div id="tab-cve" class="tab-content">
             <div class="card">
                 <h2><span>&#128218;</span> Local Offline CVE Knowledge Base</h2>
-                <p style="color: var(--text-muted); font-size: 0.875rem;">
+                <p style="color: var(--text-muted); font-size: 1rem;">
                     Query verified offline CVEs, preconditions, affected version matrices, and remediation rules.
                 </p>
-                <form id="cve-search-form" style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                <form id="cve-search-form" style="display: flex; gap: 0.75rem; margin-top: 1.25rem;">
                     <input id="cve-query" class="input-field" placeholder="e.g. CVE-2025-24813 or Apache Tomcat" required>
-                    <button type="submit" class="btn" style="white-space: nowrap;">Search CVE</button>
+                    <button type="submit" class="btn btn-purple" style="white-space: nowrap;">Search CVE</button>
                 </form>
-                <div id="cve-results" style="margin-top: 1.25rem;"></div>
+                <div id="cve-results" style="margin-top: 1.5rem;"></div>
+            </div>
+        </div>
+
+        <!-- TAB 4: CVE PREREQUISITE ANALYZER -->
+        <div id="tab-prereq" class="tab-content">
+            <div class="card">
+                <h2><span>🔍</span> CVE Prerequisite Analyzer</h2>
+                <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem;">
+                    Independently inspect, retrieve, and extract authoritative CVE prerequisites using the existing 
+                    <code>CVEPrerequisiteAgent</code> and <code>cve_prerequisites.db</code> store.
+                </p>
+
+                <!-- Input & Action Section -->
+                <div style="background: rgba(0, 0, 0, 0.25); border: 1px solid var(--card-border); border-radius: 0.65rem; padding: 1.5rem;">
+                    
+                    <!-- Source Selection Mode Options -->
+                    <div style="margin-bottom: 1rem; display: flex; align-items: center; gap: 1.75rem; flex-wrap: wrap;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.95rem; color: #cbd5e1;">
+                            <input type="radio" name="prereq-source-mode" id="mode-local" value="local">
+                            <span>Use local stored prerequisite data (<code>cve_prerequisites.db</code>)</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.95rem; color: #a78bfa; font-weight: 600;">
+                            <input type="radio" name="prereq-source-mode" id="mode-online" value="online" checked>
+                            <span>Extract from online sources (Vendor Advisories, GHSA, etc.)</span>
+                        </label>
+                    </div>
+
+                    <label for="prereq-cve-input" style="font-size: 0.925rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.5rem;">
+                        CVE ID
+                    </label>
+                    <div style="display: flex; gap: 0.85rem; flex-wrap: wrap; align-items: center;">
+                        <input type="text" id="prereq-cve-input" class="input-field" placeholder="e.g. CVE-2024-50379" value="CVE-2024-50379" style="max-width: 260px; font-weight: 700; font-family: ui-monospace, monospace;">
+                        <button id="btn-analyze-online" class="btn btn-purple" onclick="analyzePrerequisites('online')">
+                            <span>🌐</span>
+                            <span class="btn-text">Extract From Internet</span>
+                            <div class="spinner"></div>
+                        </button>
+                        <button id="btn-analyze-local" class="btn" style="background: rgba(255,255,255,0.08); border: 1px solid var(--card-border);" onclick="analyzePrerequisites('local')">
+                            <span>💾</span>
+                            <span class="btn-text">Use Local Data</span>
+                            <div class="spinner"></div>
+                        </button>
+                        <button id="btn-prereq-gen-report" class="btn btn-success" onclick="openCVEReport()" title="Generate Vulnerability Report matching reference design">
+                            <span>📄</span>
+                            <span class="btn-text">Generate Vulnerability Report &#8599;</span>
+                        </button>
+                    </div>
+
+                    <!-- Quick Test Shortcuts for Required Acceptance Test Cases -->
+                    <div style="margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                        <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Test CVEs:</span>
+                        <button type="button" class="pill-btn" onclick="setAndAnalyzePrereqCVE('CVE-2024-50379', 'online')">
+                            CVE-2024-50379 (TOCTOU Writes)
+                        </button>
+                        <button type="button" class="pill-btn" onclick="setAndAnalyzePrereqCVE('CVE-2025-24813', 'online')">
+                            CVE-2025-24813 (4 Authoritative Prereqs)
+                        </button>
+                        <button type="button" class="pill-btn" onclick="setAndAnalyzePrereqCVE('CVE-2020-1938', 'online')">
+                            CVE-2020-1938 (Ghostcat AJP)
+                        </button>
+                        <button type="button" class="pill-btn" onclick="setAndAnalyzePrereqCVE('CVE-2026-24733', 'online')" style="border-color: rgba(167, 139, 250, 0.4); background: rgba(167, 139, 250, 0.1);">
+                            CVE-2026-24733 (Security Constraint HTTP/0.9)
+                        </button>
+                        <button type="button" class="pill-btn" onclick="setAndAnalyzePrereqCVE('CVE-2021-3449', 'online')" style="border-color: rgba(96, 165, 250, 0.4); background: rgba(96, 165, 250, 0.1);">
+                            CVE-2021-3449 (OpenSSL TLS 1.2 / Renegotiation)
+                        </button>
+                        <button type="button" class="pill-btn" onclick="setAndAnalyzePrereqCVE('CVE-2014-0224', 'online')" style="border-color: rgba(52, 211, 153, 0.4); background: rgba(52, 211, 153, 0.1);">
+                            CVE-2014-0224 (OpenSSL CCS Injection)
+                        </button>
+                        <button type="button" class="pill-btn" onclick="setAndAnalyzePrereqCVE('CVE-2026-29145', 'online')">
+                            CVE-2026-29145 (No Authoritative Data)
+                        </button>
+                    </div>
+                </div>
+
+                <div id="prereq-analyzer-error" class="alert-box" style="margin-top: 1rem;"></div>
+
+                <!-- Analysis Results Section -->
+                <div id="prereq-analyzer-results" style="display: none; margin-top: 1.5rem;">
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 1rem; background: rgba(0,0,0,0.25); padding: 1rem 1.25rem; border-radius: 0.5rem; border: 1px solid var(--card-border);">
+                        <div>
+                            <h3 id="prereq-cve-title-disp" style="margin: 0; font-size: 1.25rem; color: #60a5fa; font-weight: 700;">
+                                CVE Analysis Results
+                            </h3>
+                            <span style="font-size: 0.9rem; color: var(--text-muted);">Authoritative prerequisite extraction and evaluation</span>
+                        </div>
+                        <a id="btn-prereq-view-report" href="#" target="_blank" class="btn btn-purple" style="font-size: 1.025rem; padding: 0.75rem 1.5rem;">
+                            <span>📄</span> Generate Vulnerability Report &#8599;
+                        </a>
+                    </div>
+
+                    <!-- Agent Status Bar -->
+                    <div id="prereq-status-bar" class="stat-grid" style="margin-bottom: 1rem;"></div>
+
+                    <!-- Environmental Evaluation & Applicability Banner -->
+                    <div id="prereq-evaluation-banner" style="margin-bottom: 1rem;"></div>
+
+                    <!-- Case & Origin Explanation Banner -->
+                    <div id="prereq-origin-banner" style="margin-bottom: 1rem;"></div>
+
+                    <!-- Online Extraction vs Local Stored Comparison Banner -->
+                    <div id="prereq-comparison-banner" style="margin-bottom: 1.25rem;"></div>
+
+                    <!-- Dynamic Validation Layer Card (Decoupled Exploitability Evidence) -->
+                    <div id="prereq-dynamic-validation-card" style="margin-bottom: 1.25rem;"></div>
+
+                    <!-- Prerequisites Header -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--card-border);">
+                        <h3 id="prereqs-heading" style="margin: 0; font-size: 1.1rem; color: #e2e8f0; display: flex; align-items: center; gap: 0.5rem;">
+                            <span>📋</span> Environment Prerequisites (Target Configuration / State)
+                        </h3>
+                        <span id="prereqs-count-badge" class="badge badge-accent">0 PREREQUISITES</span>
+                    </div>
+
+                    <!-- Prerequisites Cards List -->
+                    <div id="prereqs-container"></div>
+
+                    <!-- Attack Conditions Section (Attacker Actions / Payloads / Knowledge) -->
+                    <div id="attack-conditions-section" style="display: none; margin-top: 1.75rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(239, 68, 68, 0.3);">
+                            <h3 style="margin: 0; font-size: 1.05rem; color: #f87171; display: flex; align-items: center; gap: 0.5rem;">
+                                <span>🎯</span> Attack Conditions (Attacker Actions / Request Conditions)
+                            </h3>
+                            <span id="attacks-count-badge" class="badge badge-danger">0 ATTACK CONDITIONS</span>
+                        </div>
+                        <div id="attack-conditions-container"></div>
+                    </div>
+
+                    <!-- Unknown / Unverifiable Conditions Section -->
+                    <div id="unknown-conditions-section" style="display: none; margin-top: 1.75rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(245, 158, 11, 0.25);">
+                            <h3 style="margin: 0; font-size: 1.05rem; color: #f59e0b; display: flex; align-items: center; gap: 0.5rem;">
+                                <span>⚠️</span> Unknown / Cannot Verify Automatically
+                            </h3>
+                            <span id="unknowns-count-badge" class="badge badge-warn">0 UNKNOWN CONDITIONS</span>
+                        </div>
+                        <div id="unknown-conditions-container"></div>
+                    </div>
+
+                    <!-- Collapsible Raw Agent Output -->
+                    <details style="margin-top: 1.5rem; background: rgba(3, 7, 18, 0.6); border: 1px solid var(--card-border); border-radius: 0.5rem; padding: 0.75rem 1rem;">
+                        <summary style="font-weight: 600; font-size: 0.875rem; color: #93c5fd; cursor: pointer; user-select: none;">
+                            ▶ Raw Prerequisite Agent Result
+                        </summary>
+                        <pre id="prereq-raw-json" class="code-snippet" style="margin-top: 0.75rem; max-height: 420px; overflow-y: auto; white-space: pre-wrap; font-size: 0.8rem;"></pre>
+                    </details>
+                </div>
             </div>
         </div>
 
@@ -533,8 +882,16 @@
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            event.target.classList.add('active');
+            const targetEl = document.getElementById(tabId);
+            if (targetEl) targetEl.classList.add('active');
+            
+            const btn = document.querySelector(`.nav-tab[onclick*="${tabId}"]`);
+            if (btn) {
+                btn.classList.add('active');
+            } else if (window.event && window.event.target) {
+                const targetBtn = window.event.target.closest('.nav-tab');
+                if (targetBtn) targetBtn.classList.add('active');
+            }
         }
 
         function showStatus(msg, type = 'info') {
@@ -559,6 +916,70 @@
                 btn.classList.remove('loading');
                 btn.disabled = false;
             }
+        }
+
+        function escapeHtml(str) {
+            if (str === null || str === undefined) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        async function parseApiResponse(response, defaultMsg = 'Request failed') {
+            const contentType = (response.headers.get('content-type') || '').toLowerCase();
+            let parsedData = null;
+
+            if (contentType.includes('application/json')) {
+                try {
+                    parsedData = await response.json();
+                } catch (e) {
+                    parsedData = null;
+                }
+            }
+
+            if (!parsedData) {
+                let rawText = '';
+                try {
+                    rawText = await response.text();
+                } catch (e) {
+                    rawText = '';
+                }
+
+                // Strip HTML tags and normalize whitespace
+                let clean = rawText.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+                // Redact local paths and stack traces
+                clean = clean.replace(/([a-zA-Z]:\\[^\s:<>]+)/g, '[local-path]')
+                             .replace(/(\/(?:Users|home|var|tmp|etc)\/[^\s:<>]+)/g, '[local-path]')
+                             .replace(/Traceback \(most recent call last\)[\s\S]*/i, '');
+                if (clean.length > 250) {
+                    clean = clean.substring(0, 250) + '...';
+                }
+                const statusPart = response.status ? `(HTTP ${response.status}${response.statusText ? ': ' + response.statusText : ''})` : '';
+                const desc = clean || 'Server returned non-JSON response';
+                throw new Error(`${defaultMsg} ${statusPart}: ${desc}`.trim());
+            }
+
+            if (!response.ok || parsedData.success === false) {
+                let errText = 'Server returned an error';
+                if (parsedData.error) {
+                    if (typeof parsedData.error === 'string') {
+                        errText = parsedData.error;
+                    } else if (parsedData.error.message) {
+                        errText = parsedData.error.message;
+                    } else {
+                        errText = JSON.stringify(parsedData.error);
+                    }
+                } else if (parsedData.message) {
+                    errText = parsedData.message;
+                }
+                const statusPart = response.status ? `(HTTP ${response.status})` : '';
+                throw new Error(`${defaultMsg} ${statusPart}: ${errText}`.trim());
+            }
+
+            return parsedData;
         }
 
         // =========================================================
@@ -646,7 +1067,7 @@
         }
 
         // =========================================================
-        // TAB 2: OFFLINE ARTIFACT UPLOAD & SCAN
+        // TAB 2: OFFLINE ARTIFACT UPLOAD & SCAN (Section 13)
         // =========================================================
         document.getElementById('upload-form').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -659,26 +1080,133 @@
             formData.append('file', fileInput.files[0]);
 
             setBtnLoading('upload-btn', true);
+            document.getElementById('step-scan').style.display = 'none';
+            document.getElementById('step-progress').style.display = 'none';
+            document.getElementById('upload-results').style.display = 'none';
 
             try {
                 const res = await fetch('/upload', { method: 'POST', body: formData });
-                const data = await res.json();
-                if (!res.ok) throw new Error(data.error || 'Upload failed');
+                const data = await parseApiResponse(res, 'Upload failed');
 
                 currentAppId = data.application_id;
-                showStatus(`Upload successful! Artifact ID: ${currentAppId}`, "success");
+                showStatus(`Archive uploaded and profiled safely! ID: <strong>${escapeHtml(currentAppId)}</strong>`, "success");
 
-                const routing = data.routing || {};
-                const tools = (routing.selected_tools || []).join(', ') || 'Semgrep / Trivy';
-                document.getElementById('routing-summary').innerText = `Target: ${routing.target_type || 'code'}. Selected tools: ${tools}.`;
+                // 1. Populate File, SHA256, Application
+                document.getElementById('disp-file').innerText = data.filename || fileInput.files[0].name;
+                document.getElementById('disp-sha256').innerText = data.sha256 || 'N/A';
+                
+                const prof = data.profile || {};
+                const langs = (prof.languages || []).map(l => l.charAt(0).toUpperCase() + l.slice(1));
+                const fworks = prof.frameworks || [];
+                let appDisplay = 'Unknown Application';
+                if (langs.length > 0 && fworks.length > 0) {
+                    appDisplay = `${langs.join(', ')} / ${fworks.join(', ')}`;
+                } else if (langs.length > 0) {
+                    appDisplay = langs.join(', ');
+                } else if (fworks.length > 0) {
+                    appDisplay = fworks.join(', ');
+                } else if (prof.documentation_only) {
+                    appDisplay = 'Documentation / Plain Assets';
+                }
+                document.getElementById('disp-app').innerText = appDisplay;
 
-                const stepScan = document.getElementById('step-scan');
-                stepScan.style.opacity = '1';
-                stepScan.style.pointerEvents = 'auto';
+                // 2. Populate Detected Items
+                const detectedContainer = document.getElementById('disp-detected-tags');
+                detectedContainer.innerHTML = '';
+                const manifests = prof.dependency_manifests || prof.manifests || [];
+                const infra = prof.infrastructure || [];
+                
+                manifests.forEach(m => {
+                    detectedContainer.innerHTML += `<span class="badge badge-accent">Manifest: ${escapeHtml(m)}</span>`;
+                });
+                infra.forEach(i => {
+                    detectedContainer.innerHTML += `<span class="badge badge-warn">Infra: ${escapeHtml(i)}</span>`;
+                });
+                langs.forEach(l => {
+                    detectedContainer.innerHTML += `<span class="badge badge-success">${escapeHtml(l)} Source</span>`;
+                });
+                if (prof.web_application) {
+                    detectedContainer.innerHTML += `<span class="badge" style="background: rgba(14, 165, 233, 0.2); color: #38bdf8; border: 1px solid #0ea5e9;">Web Application</span>`;
+                }
+                if (detectedContainer.innerHTML === '') {
+                    detectedContainer.innerHTML = '<span style="color: var(--text-muted); font-size: 0.85rem;">No standard source or manifest files detected.</span>';
+                }
+
+                // 3. Populate Scan Plan Checklist (Section 13)
+                const plan = data.scanner_plan || {};
+                const planContainer = document.getElementById('disp-scan-plan');
+                planContainer.innerHTML = '';
+
+                // Trivy
+                const trivyPlan = plan.trivy || {};
+                if (trivyPlan.enabled) {
+                    const scannersStr = (trivyPlan.scanners || ['vuln', 'secret']).join(', ');
+                    planContainer.innerHTML += `
+                        <div style="color: #6ee7b7; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <strong>✓ Trivy:</strong> Filesystem scan enabled (<span style="color: #cbd5e1;">modules: ${escapeHtml(scannersStr)}</span>)
+                        </div>
+                    `;
+                } else {
+                    planContainer.innerHTML += `
+                        <div style="color: #94a3b8; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <strong>— Trivy:</strong> disabled (<span style="color: #64748b;">${escapeHtml(trivyPlan.reason || 'Not applicable')}</span>)
+                        </div>
+                    `;
+                }
+
+                // Semgrep
+                const semgrepPlan = plan.semgrep || {};
+                if (semgrepPlan.enabled) {
+                    planContainer.innerHTML += `
+                        <div style="color: #6ee7b7; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <strong>✓ Semgrep:</strong> Static analysis enabled (<span style="color: #cbd5e1;">local rulepack</span>)
+                        </div>
+                    `;
+                } else {
+                    planContainer.innerHTML += `
+                        <div style="color: #94a3b8; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <strong>— Semgrep:</strong> disabled (<span style="color: #64748b;">${escapeHtml(semgrepPlan.reason || 'No source code')}</span>)
+                        </div>
+                    `;
+                }
+
+                // Nuclei
+                const nucleiPlan = plan.nuclei || {};
+                if (nucleiPlan.enabled) {
+                    planContainer.innerHTML += `
+                        <div style="color: #6ee7b7; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <strong>✓ Nuclei:</strong> Live target: ${escapeHtml(nucleiPlan.target)}
+                        </div>
+                    `;
+                } else {
+                    planContainer.innerHTML += `
+                        <div style="color: #94a3b8; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <strong>— Nuclei:</strong> ${escapeHtml(nucleiPlan.reason || 'no dynamic target')}
+                        </div>
+                    `;
+                }
+
+                // Nmap
+                const nmapPlan = plan.nmap || {};
+                if (nmapPlan.enabled) {
+                    planContainer.innerHTML += `
+                        <div style="color: #6ee7b7; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <strong>✓ Nmap:</strong> Network target: ${escapeHtml(nmapPlan.target)}
+                        </div>
+                    `;
+                } else {
+                    planContainer.innerHTML += `
+                        <div style="color: #94a3b8; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <strong>— Nmap:</strong> ${escapeHtml(nmapPlan.reason || 'no network target')}
+                        </div>
+                    `;
+                }
+
+                document.getElementById('step-scan').style.display = 'block';
                 document.getElementById('scan-btn').disabled = false;
 
             } catch (err) {
-                showStatus(err.message, "error");
+                showStatus(`Upload Error: ${escapeHtml(err.message)}`, "error");
             } finally {
                 setBtnLoading('upload-btn', false);
             }
@@ -688,29 +1216,97 @@
             if (!currentAppId) return;
             hideStatus();
             setBtnLoading('scan-btn', true);
-            showStatus("Scanning uploaded artifact...", "info");
+
+            const progressCard = document.getElementById('step-progress');
+            progressCard.style.display = 'block';
+            document.getElementById('upload-results').style.display = 'none';
+
+            // Mark extraction & profiling as passed
+            const setProgStatus = (id, text, color = '#6ee7b7') => {
+                const el = document.getElementById(id);
+                if (el) {
+                    const ind = el.querySelector('.status-indicator');
+                    if (ind) {
+                        ind.innerHTML = text;
+                        ind.style.color = color;
+                    }
+                }
+            };
+
+            setProgStatus('prog-extract', '✓ Completed');
+            setProgStatus('prog-profile', '✓ Completed');
+            setProgStatus('prog-trivy', '⏳ Running...');
+            setProgStatus('prog-semgrep', '⏳ Queued...');
 
             try {
                 const res = await fetch(`/scan/${currentAppId}`, { method: 'POST' });
-                const data = await res.json();
-                if (!res.ok) throw new Error(data.error || 'Scan failed');
+                const data = await parseApiResponse(res, 'Scan failed');
 
-                hideStatus();
+                // Update final progress states
+                const planResults = (data.manifest && data.manifest.scanner_results) || {};
+                setProgStatus('prog-trivy', planResults.trivy === 'completed' ? '✓ Completed' : (planResults.trivy || '— Skipped'));
+                setProgStatus('prog-semgrep', planResults.semgrep === 'completed' ? '✓ Completed' : (planResults.semgrep || '— Skipped'));
+                setProgStatus('prog-nuclei', planResults.nuclei === 'completed' ? '✓ Completed' : '— Skipped (no dynamic target)', '#94a3b8');
+                setProgStatus('prog-nmap', planResults.nmap === 'completed' ? '✓ Completed' : '— Skipped (no network target)', '#94a3b8');
+                setProgStatus('prog-eval', '✓ Completed');
+                setProgStatus('prog-threat', '✓ Completed');
+                setProgStatus('prog-report', '✓ Completed (report.html ready)');
+
+                // Display results
                 document.getElementById('upload-results').style.display = 'block';
                 document.getElementById('btn-view-upload-report').href = `/report/${currentAppId}`;
+                document.getElementById('findings-count-summary').innerText = 
+                    `Scan finished in ${data.manifest?.summary?.execution_time_seconds || 0}s. Identified ${data.total_findings} correlated finding(s).`;
 
+                // Display Manifest
+                if (data.manifest) {
+                    document.getElementById('upload-manifest-json').innerText = JSON.stringify(data.manifest, null, 2);
+                }
+
+                // Render Findings
                 const list = document.getElementById('upload-findings-list');
                 list.innerHTML = '';
-                (data.findings || []).forEach(f => {
-                    list.innerHTML += `
-                        <div class="code-snippet">
-                            <strong>${f.id}</strong> [${f.scanner.toUpperCase()}]: ${f.title} (${f.severity})
-                        </div>
-                    `;
-                });
+                const findings = data.findings || [];
+                if (findings.length === 0) {
+                    list.innerHTML = '<div style="color: var(--text-muted); font-size: 0.9rem; padding: 1rem 0;">No vulnerabilities or misconfigurations detected in this artifact.</div>';
+                } else {
+                    findings.forEach(f => {
+                        const sev = (f.severity || 'UNKNOWN').toUpperCase();
+                        let badgeCls = 'badge-warn';
+                        if (sev === 'CRITICAL' || sev === 'HIGH') badgeCls = 'badge-danger';
+                        else if (sev === 'LOW') badgeCls = 'badge-neutral';
+
+                        const cveLabel = f.cve || f.cve_id ? `<strong style="color: #60a5fa; margin-right: 0.5rem;">${escapeHtml(f.cve || f.cve_id)}</strong>` : '';
+                        const prereqStatus = f.prerequisite_status ? `<span class="badge badge-accent" style="margin-left: 0.4rem;">PREREQ: ${escapeHtml(f.prerequisite_status)}</span>` : '';
+                        const kevBadge = f.kev ? `<span class="badge badge-danger" style="margin-left: 0.4rem;">CISA KEV</span>` : '';
+
+                        list.innerHTML += `
+                            <div class="card" style="margin-bottom: 0.75rem; background: rgba(0,0,0,0.25);">
+                                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap: wrap; gap: 0.5rem;">
+                                    <div>
+                                        ${cveLabel}
+                                        <strong style="color: #e2e8f0;">${escapeHtml(f.title || f.message || f.id)}</strong>
+                                        ${prereqStatus}
+                                        ${kevBadge}
+                                    </div>
+                                    <span class="badge ${badgeCls}">${sev}</span>
+                                </div>
+                                <div style="color: var(--text-muted); font-size: 0.8rem; margin: 0.4rem 0;">
+                                    Scanner: <code style="color: #c4b5fd;">${escapeHtml(f.scanner || 'unknown')}</code> | 
+                                    File: <code style="color: #93c5fd;">${escapeHtml(f.file || 'N/A')}</code>${f.line ? `:${f.line}` : ''}
+                                </div>
+                                <div style="color: #cbd5e1; font-size: 0.85rem; line-height: 1.4;">
+                                    ${escapeHtml(f.description || f.message || '')}
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
+
+                showStatus(`Scan completed successfully! ${data.total_findings} finding(s) discovered.`, "success");
 
             } catch (err) {
-                showStatus(err.message, "error");
+                showStatus(`Scan Error: ${escapeHtml(err.message)}`, "error");
             } finally {
                 setBtnLoading('scan-btn', false);
             }
@@ -727,8 +1323,7 @@
 
             try {
                 const res = await fetch(`/api/cves/search?q=${encodeURIComponent(query)}`);
-                const data = await res.json();
-                if (!res.ok) throw new Error(data.error || 'Search failed');
+                const data = await parseApiResponse(res, 'Search failed');
 
                 output.innerHTML = '';
                 if (!data.results || data.results.length === 0) {
@@ -739,23 +1334,659 @@
                 data.results.forEach(r => {
                     const sev = (r.severity || 'MEDIUM').toUpperCase();
                     output.innerHTML += `
-                        <div class="card" style="margin-bottom: 0.75rem;">
-                            <div style="display:flex; justify-content:space-between; align-items:center;">
-                                <strong style="color: #60a5fa;">${r.cve_id}</strong>
-                                <span class="badge ${sev === 'CRITICAL' ? 'badge-danger' : 'badge-warn'}">${sev}</span>
+                        <div class="card" style="margin-bottom: 1rem;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap: wrap; gap: 0.5rem;">
+                                <div style="display:flex; align-items:center; gap: 0.75rem;">
+                                    <strong style="color: #60a5fa; font-size: 1.15rem;">${escapeHtml(r.cve_id)}</strong>
+                                    <span class="badge ${sev === 'CRITICAL' ? 'badge-danger' : 'badge-warn'}">${sev}</span>
+                                </div>
+                                <a href="/report/cve/${encodeURIComponent(r.cve_id)}" target="_blank" class="btn btn-purple" style="padding: 0.5rem 1rem; font-size: 0.95rem;">
+                                    <span>📄</span> View Vulnerability Report &#8599;
+                                </a>
                             </div>
-                            <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0.5rem 0;">
-                                ${r.product || 'Unknown Product'} (${r.vendor || 'Apache'}) | Fixed in: <span style="color:#6ee7b7;">${r.fixed_versions ? Object.values(r.fixed_versions).join(', ') : 'N/A'}</span>
+                            <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0.6rem 0;">
+                                ${escapeHtml(r.product || 'Unknown Product')} (${escapeHtml(r.vendor || 'Apache')}) | Fixed in: <span style="color:#6ee7b7; font-weight:600;">${r.fixed_versions ? escapeHtml(Object.values(r.fixed_versions).join(', ')) : 'N/A'}</span>
                             </p>
-                            <div class="code-snippet" style="color: #cbd5e1;">${r.description || r.summary || ''}</div>
+                            <div class="code-snippet" style="color: #cbd5e1; font-size: 0.925rem;">${escapeHtml(r.description || r.summary || '')}</div>
                         </div>
                     `;
                 });
 
             } catch (err) {
-                output.innerHTML = `<div style="color: var(--danger);">${err.message}</div>`;
+                output.innerHTML = `<div style="color: var(--danger); font-size: 1rem;">${escapeHtml(err.message)}</div>`;
             }
         });
+
+        // =========================================================
+        // TAB 4: CVE PREREQUISITE ANALYZER
+        // =========================================================
+        function escapeHtml(str) {
+            if (str === null || str === undefined) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function openCVEReport() {
+            const input = document.getElementById('prereq-cve-input');
+            const cve = (input.value || '').trim().toUpperCase() || 'CVE-2025-24813';
+            window.open(`/report/cve/${encodeURIComponent(cve)}`, '_blank');
+        }
+
+        function setAndAnalyzePrereqCVE(cve, mode = 'online') {
+            document.getElementById('prereq-cve-input').value = cve;
+            analyzePrerequisites(mode);
+        }
+
+        async function analyzePrerequisites(forcedMode) {
+            const input = document.getElementById('prereq-cve-input');
+            const errorBox = document.getElementById('prereq-analyzer-error');
+            const resultsCard = document.getElementById('prereq-analyzer-results');
+
+            errorBox.className = 'alert-box';
+            errorBox.style.display = 'none';
+            errorBox.innerHTML = '';
+
+            const rawCve = (input.value || '').trim().toUpperCase();
+            if (!rawCve) {
+                errorBox.className = 'alert-box alert-error active';
+                errorBox.style.display = 'block';
+                errorBox.innerHTML = 'Please enter a valid CVE ID (e.g. CVE-2024-50379).';
+                return;
+            }
+
+            const cveRegex = /^CVE-\d{4}-\d{4,8}$/;
+            if (!cveRegex.test(rawCve)) {
+                errorBox.className = 'alert-box alert-error active';
+                errorBox.style.display = 'block';
+                errorBox.innerHTML = `Invalid CVE ID format: "<strong>${escapeHtml(rawCve)}</strong>". Expected format is <code>CVE-YYYY-NNNN+</code>.`;
+                return;
+            }
+
+            let mode = forcedMode;
+            if (!mode) {
+                const onlineRadio = document.getElementById('mode-online');
+                mode = (onlineRadio && onlineRadio.checked) ? 'online' : 'local';
+            }
+
+            // Sync radio button
+            const radioEl = document.getElementById(mode === 'online' ? 'mode-online' : 'mode-local');
+            if (radioEl) radioEl.checked = true;
+
+            const activeBtnId = mode === 'online' ? 'btn-analyze-online' : 'btn-analyze-local';
+            setBtnLoading('btn-analyze-online', false);
+            setBtnLoading('btn-analyze-local', false);
+            setBtnLoading(activeBtnId, true);
+
+            try {
+                const response = await fetch('/api/cve/prerequisites', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ cve_id: rawCve, mode: mode, online: (mode === 'online') })
+                });
+
+                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to retrieve prerequisite data');
+                }
+
+                renderPrerequisiteAnalysis(data);
+                resultsCard.style.display = 'block';
+
+            } catch (err) {
+                errorBox.className = 'alert-box alert-error active';
+                errorBox.style.display = 'block';
+                errorBox.innerHTML = `Prerequisite Agent Error: ${escapeHtml(err.message)}`;
+            } finally {
+                setBtnLoading(activeBtnId, false);
+            }
+        }
+
+        function renderPrerequisiteAnalysis(data) {
+            const statusBar = document.getElementById('prereq-status-bar');
+            const evalBanner = document.getElementById('prereq-evaluation-banner');
+            const originBanner = document.getElementById('prereq-origin-banner');
+            const comparisonBanner = document.getElementById('prereq-comparison-banner');
+            const dynamicValidationCard = document.getElementById('prereq-dynamic-validation-card');
+            const prereqsContainer = document.getElementById('prereqs-container');
+            const prereqsCountBadge = document.getElementById('prereqs-count-badge');
+            const attackSection = document.getElementById('attack-conditions-section');
+            const attackContainer = document.getElementById('attack-conditions-container');
+            const attacksCountBadge = document.getElementById('attacks-count-badge');
+            const unknownSection = document.getElementById('unknown-conditions-section');
+            const unknownContainer = document.getElementById('unknown-conditions-container');
+            const unknownsCountBadge = document.getElementById('unknowns-count-badge');
+            const rawJsonEl = document.getElementById('prereq-raw-json');
+
+            const titleDisp = document.getElementById('prereq-cve-title-disp');
+            if (titleDisp) titleDisp.innerText = `${data.cve_id} Analysis Results`;
+            const reportBtn = document.getElementById('btn-prereq-view-report');
+            if (reportBtn) reportBtn.href = `/report/cve/${encodeURIComponent(data.cve_id)}`;
+
+            // 1. Status Bar
+            let dataBadgeClass = 'badge-warn';
+            if (data.data_status === 'FOUND') dataBadgeClass = 'badge-success';
+            else if (data.data_status === 'EXTRACTED') dataBadgeClass = 'badge-accent';
+
+            const sourcesRetrieved = data.sources_retrieved ?? (data.sources_count ?? 0);
+            const authSources = data.authoritative_sources ?? (data.sources || []).filter(s => s.is_authoritative).length;
+
+            const appStatus = (data.applicability_status || 'UNKNOWN').toUpperCase();
+            let appColor = '#fbbf24';
+            if (appStatus === 'APPLICABLE') appColor = '#34d399';
+            else if (appStatus === 'NOT_APPLICABLE') appColor = '#f87171';
+
+            const dynStatus = (data.dynamic_validation_status || 'NO_DYNAMIC_TEST_AVAILABLE').toUpperCase();
+            let dynColor = '#94a3b8';
+            if (dynStatus === 'CONFIRMED') dynColor = '#34d399';
+            else if (dynStatus === 'NOT_DYNAMICALLY_CONFIRMED') dynColor = '#f87171';
+            else if (dynStatus === 'UNDETERMINED') dynColor = '#fbbf24';
+
+            statusBar.innerHTML = `
+                <div class="stat-box">
+                    <div class="title">CVE</div>
+                    <div class="number" style="font-size: 1.1rem; color: #60a5fa; font-family: ui-monospace, monospace;">
+                        ${escapeHtml(data.cve_id)}
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="title">Applicability</div>
+                    <div class="number" style="font-size: 0.95rem; font-weight: 800; color: ${appColor};">
+                        ${escapeHtml(appStatus)}
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="title">Dynamic Validation</div>
+                    <div class="number" style="font-size: 0.85rem; font-weight: 700; color: ${dynColor};">
+                        ${escapeHtml(dynStatus)}
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="title">Extraction Status</div>
+                    <div class="number" style="font-size: 0.95rem; font-weight: 700; color: ${data.data_status === 'NOT AVAILABLE' ? '#f59e0b' : '#34d399'};">
+                        ${escapeHtml(data.extraction_status || data.data_status)}
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="title">Prerequisites</div>
+                    <div class="number" style="color: #38bdf8;">${data.prerequisites_count ?? 0}</div>
+                </div>
+                <div class="stat-box">
+                    <div class="title">Attack Conditions</div>
+                    <div class="number" style="color: #f87171;">${data.attack_conditions_count ?? 0}</div>
+                </div>
+            `;
+
+            // 1b. Environmental Applicability Evaluation Banner
+            const envEval = data.environmental_evaluation || {};
+            const satCount = envEval.satisfied_count ?? 0;
+            const notSatCount = envEval.not_satisfied_count ?? 0;
+            const unkCount = envEval.unknown_count ?? 0;
+            const evalReason = envEval.reason || (
+                appStatus === 'APPLICABLE' ? 'All documented environmental prerequisites are satisfied in target environment.' :
+                appStatus === 'NOT_APPLICABLE' ? 'One or more required documented environmental prerequisites are definitively not satisfied.' :
+                'Prerequisite evidence unavailable or incomplete (missing evidence = UNKNOWN).'
+            );
+
+            let appBorder = 'rgba(245, 158, 11, 0.4)';
+            let appBg = 'rgba(245, 158, 11, 0.08)';
+            let appIcon = '⚠️';
+            if (appStatus === 'APPLICABLE') {
+                appBorder = 'rgba(52, 211, 153, 0.4)';
+                appBg = 'rgba(52, 211, 153, 0.08)';
+                appIcon = '✓';
+            } else if (appStatus === 'NOT_APPLICABLE') {
+                appBorder = 'rgba(239, 68, 68, 0.4)';
+                appBg = 'rgba(239, 68, 68, 0.08)';
+                appIcon = '✗';
+            }
+
+            if (evalBanner) {
+                evalBanner.innerHTML = `
+                    <div style="background: ${appBg}; border: 1px solid ${appBorder}; border-radius: 0.5rem; padding: 1rem 1.25rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; flex-wrap: wrap; gap: 0.5rem;">
+                            <div style="display: flex; align-items: center; gap: 0.6rem;">
+                                <span style="font-size: 1.25rem;">${appIcon}</span>
+                                <div>
+                                    <div style="font-size: 0.75rem; color: ${appColor}; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">
+                                        Environmental Applicability Evaluation
+                                    </div>
+                                    <div style="font-size: 1.15rem; font-weight: 800; color: ${appColor};">
+                                        ${escapeHtml(appStatus)}
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap;">
+                                <span class="badge badge-success" style="font-size: 0.75rem;">${satCount} SATISFIED</span>
+                                <span class="badge badge-danger" style="font-size: 0.75rem;">${notSatCount} NOT SATISFIED</span>
+                                <span class="badge badge-warn" style="font-size: 0.75rem;">${unkCount} UNKNOWN</span>
+                            </div>
+                        </div>
+                        <div style="font-size: 0.85rem; color: #cbd5e1; margin-top: 0.35rem; line-height: 1.45;">
+                            ${escapeHtml(evalReason)}
+                        </div>
+                    </div>
+                `;
+            }
+
+            // 1c. Dynamic Validation Layer Card (Decoupled Exploitability Evidence)
+            if (dynamicValidationCard) {
+                let dynBadgeClass = 'badge-neutral';
+                if (dynStatus === 'CONFIRMED') dynBadgeClass = 'badge-success';
+                else if (dynStatus === 'NOT_DYNAMICALLY_CONFIRMED') dynBadgeClass = 'badge-danger';
+                else if (dynStatus === 'UNDETERMINED') dynBadgeClass = 'badge-warn';
+
+                dynamicValidationCard.innerHTML = `
+                    <div style="background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(59, 130, 246, 0.25); border-radius: 0.5rem; padding: 0.85rem 1.15rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+                        <div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <span style="font-size: 1rem;">🔬</span>
+                                <strong style="font-size: 0.9rem; color: #93c5fd;">Dynamic Validation Layer (Decoupled Exploitability Evidence)</strong>
+                            </div>
+                            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.2rem;">
+                                Runtime verification status based on target dynamic observation / active testing (separate from static configuration applicability). Threat intelligence signals (CISA KEV, EPSS) remain distinct contextual signals.
+                            </div>
+                        </div>
+                        <span class="badge ${dynBadgeClass}" style="font-size: 0.825rem; font-weight: 700; color: ${dynColor};">
+                            ${escapeHtml(dynStatus)}
+                        </span>
+                    </div>
+                `;
+            }
+
+            // 2. Origin / Mode Banner
+            if (data.mode === 'online') {
+                if (data.data_status === 'EXTRACTED') {
+                    originBanner.innerHTML = `
+                        <div style="background: rgba(139, 92, 246, 0.08); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 0.5rem; padding: 0.85rem 1.15rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+                            <div>
+                                <div style="font-weight: 700; color: #a78bfa; font-size: 0.95rem;">
+                                    Extraction Status: EXTRACTED FROM ONLINE SOURCES
+                                </div>
+                                <div style="font-size: 0.85rem; color: #cbd5e1; margin-top: 0.2rem;">
+                                    Source: <strong>${escapeHtml(data.source_label || 'Online Advisories')}</strong>
+                                </div>
+                            </div>
+                            <span class="badge badge-accent">ONLINE EXTRACTION WORKFLOW</span>
+                        </div>
+                    `;
+                } else {
+                    originBanner.innerHTML = `
+                        <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 0.5rem; padding: 0.85rem 1.15rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem; flex-wrap: wrap; gap: 0.5rem;">
+                                <div style="font-weight: 700; color: #fbbf24; font-size: 0.95rem;">
+                                    NO AUTHORITATIVE PREREQUISITE DATA FOUND
+                                </div>
+                                <span class="badge badge-warn">UNKNOWN / NOT EXTRACTED</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: #e2e8f0; margin-top: 0.25rem;">
+                                ${escapeHtml(data.reason || 'No authoritative prerequisite data found across online vendor advisories, GHSA, or project references. No prerequisites were invented.')}
+                            </div>
+                        </div>
+                    `;
+                }
+            } else {
+                // Local Mode
+                const caseStr = String(data.case || '').replace('_', ' ').toUpperCase();
+                if (caseStr === 'CASE A' || data.data_status === 'FOUND') {
+                    originBanner.innerHTML = `
+                        <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 0.5rem; padding: 0.85rem 1.15rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+                            <div>
+                                <div style="font-weight: 700; color: #34d399; font-size: 0.95rem;">
+                                    Prerequisite Data: FOUND
+                                </div>
+                                <div style="font-size: 0.85rem; color: #cbd5e1; margin-top: 0.2rem;">
+                                    Source: <strong>Local prerequisite database</strong> (<code>cve_prerequisites.db</code>)
+                                </div>
+                            </div>
+                            <span class="badge badge-success">CASE A: LOCAL STORED DATA</span>
+                        </div>
+                    `;
+                } else if (caseStr === 'CASE B' || data.data_status === 'EXTRACTED') {
+                    originBanner.innerHTML = `
+                        <div style="background: rgba(139, 92, 246, 0.08); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 0.5rem; padding: 0.85rem 1.15rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+                            <div>
+                                <div style="font-weight: 700; color: #a78bfa; font-size: 0.95rem;">
+                                    Prerequisite Data: EXTRACTED
+                                </div>
+                                <div style="font-size: 0.85rem; color: #cbd5e1; margin-top: 0.2rem;">
+                                    Source: <strong>${escapeHtml(data.source_label || 'Offline Sources')}</strong>
+                                </div>
+                            </div>
+                            <span class="badge badge-accent">CASE B: OFFLINE EXTRACTION</span>
+                        </div>
+                    `;
+                } else {
+                    originBanner.innerHTML = `
+                        <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 0.5rem; padding: 0.85rem 1.15rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                                <div style="font-weight: 700; color: #fbbf24; font-size: 0.95rem;">
+                                    Prerequisite Data: NOT AVAILABLE
+                                </div>
+                                <span class="badge badge-warn">CASE C: NO PRECONDITIONS</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: #e2e8f0; margin-top: 0.25rem;">
+                                ${escapeHtml(data.reason || 'CVE does not have prerequisite data in local database.')}
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+
+            // 3. Online vs Local Comparison Section
+            if (data.comparison && data.comparison.has_local_data) {
+                const comp = data.comparison;
+                const formatList = (arr, emptyText) => {
+                    if (!arr || arr.length === 0) return `<span style="color: var(--text-muted);">${emptyText}</span>`;
+                    return arr.map(item => `<div>• ${escapeHtml(item)}</div>`).join('');
+                };
+
+                comparisonBanner.style.display = 'block';
+                comparisonBanner.innerHTML = `
+                    <div style="background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 0.5rem; padding: 1rem 1.25rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+                            <h4 style="margin: 0; font-size: 0.95rem; color: #a78bfa; display: flex; align-items: center; gap: 0.5rem;">
+                                <span>⚖️</span> ONLINE EXTRACTION vs LOCAL STORED DATA
+                            </h4>
+                            <div style="font-size: 0.8rem; color: #94a3b8;">
+                                Local prerequisites: <strong style="color: #60a5fa;">${comp.local_count}</strong> &nbsp;|&nbsp; 
+                                Online prerequisites: <strong style="color: #34d399;">${comp.online_count}</strong>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; font-size: 0.825rem;">
+                            <div style="background: rgba(0,0,0,0.25); padding: 0.75rem; border-radius: 0.375rem; border: 1px solid rgba(255,255,255,0.05);">
+                                <div style="color: #34d399; font-weight: 700; margin-bottom: 0.35rem;">✓ Matched in Both:</div>
+                                ${formatList(comp.matched, '(None)')}
+                            </div>
+                            <div style="background: rgba(0,0,0,0.25); padding: 0.75rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.25);">
+                                <div style="color: #c4b5fd; font-weight: 700; margin-bottom: 0.35rem;">★ Only Online (Discovered):</div>
+                                ${formatList(comp.only_online, '(None)')}
+                            </div>
+                            <div style="background: rgba(0,0,0,0.25); padding: 0.75rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.25);">
+                                <div style="color: #fde68a; font-weight: 700; margin-bottom: 0.35rem;">💾 Only Local Database:</div>
+                                ${formatList(comp.only_local, '(None)')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                comparisonBanner.style.display = 'none';
+                comparisonBanner.innerHTML = '';
+            }
+
+            // 4. Prerequisites Cards List
+            const prereqs = data.prerequisites || [];
+            prereqsCountBadge.innerText = `${prereqs.length} PREREQUISITE${prereqs.length === 1 ? '' : 'S'}`;
+            prereqsContainer.innerHTML = '';
+
+            if (prereqs.length === 0) {
+                prereqsContainer.innerHTML = `
+                    <div style="color: var(--text-muted); font-size: 0.9rem; padding: 1.5rem 1rem; text-align: center; background: rgba(0, 0, 0, 0.2); border-radius: 0.5rem; border: 1px dashed var(--card-border);">
+                        No CVE-specific prerequisite records identified for ${escapeHtml(data.cve_id)}.
+                    </div>
+                `;
+            } else {
+                prereqs.forEach((p, idx) => {
+                    const reqBadge = p.required 
+                        ? '<span class="badge badge-danger">REQUIRED: YES</span>' 
+                        : '<span class="badge badge-warn">REQUIRED: NO</span>';
+                    
+                    const trustBadge = p.trust_level === 'Authoritative'
+                        ? '<span class="badge badge-success">TRUST: AUTHORITATIVE</span>'
+                        : `<span class="badge badge-accent">TRUST: ${escapeHtml(p.trust_level || 'DERIVED')}</span>`;
+
+                    const confBadge = `<span class="badge badge-accent">CONFIDENCE: ${escapeHtml(p.confidence || 'HIGH')}</span>`;
+
+                    const fetchBadge = p.fetch_status === 'FETCHED ONLINE'
+                        ? '<span class="badge badge-success">FETCHED ONLINE</span>'
+                        : `<span class="badge badge-accent">${escapeHtml(p.fetch_status || 'LOCAL DATA')}</span>`;
+
+                    const evalSt = (p.evaluation_status || 'UNKNOWN').toUpperCase();
+                    let condEvalBadge = '<span class="badge badge-warn" style="font-weight: 700;">? UNKNOWN</span>';
+                    let condBorderColor = '#fbbf24';
+                    if (evalSt === 'SATISFIED') {
+                        condEvalBadge = '<span class="badge badge-success" style="font-weight: 700;">✓ SATISFIED</span>';
+                        condBorderColor = '#34d399';
+                    } else if (evalSt === 'NOT_SATISFIED') {
+                        condEvalBadge = '<span class="badge badge-danger" style="font-weight: 700;">✗ NOT_SATISFIED</span>';
+                        condBorderColor = '#f87171';
+                    }
+
+                    let sourceUrlMarkup = '<span style="color: var(--text-muted);">N/A</span>';
+                    if (p.source_url) {
+                        sourceUrlMarkup = `<a href="${escapeHtml(p.source_url)}" target="_blank" style="color: #60a5fa; text-decoration: underline; word-break: break-all;">${escapeHtml(p.source_url)} &#8599;</a>`;
+                    }
+
+                    prereqsContainer.innerHTML += `
+                        <div class="prereq-card" style="border-left: 3px solid ${condBorderColor};">
+                            <div class="prereq-header">
+                                <div>
+                                    <div style="font-size: 0.75rem; color: #a78bfa; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.2rem;">
+                                        Prerequisite ${idx + 1}
+                                    </div>
+                                    <div style="font-size: 1.05rem; font-weight: 700; color: #f3f4f6;">
+                                        ${escapeHtml(p.name)}
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: flex-end;">
+                                    ${condEvalBadge}
+                                    ${reqBadge}
+                                    ${trustBadge}
+                                    ${confBadge}
+                                    ${fetchBadge}
+                                </div>
+                            </div>
+
+                            <div style="margin: 0.5rem 0 0.65rem 0; padding: 0.45rem 0.75rem; background: rgba(0,0,0,0.25); border-radius: 0.35rem; border-left: 2px solid ${condBorderColor}; font-size: 0.825rem;">
+                                <strong style="color: ${condBorderColor};">Target Environment Assessment: ${escapeHtml(evalSt)}</strong>
+                                <span style="color: #cbd5e1; margin-left: 0.4rem;">${escapeHtml(p.evaluation_reason || 'Evidence evaluated against actual target environment')}</span>
+                            </div>
+
+                            <p style="color: #cbd5e1; font-size: 0.875rem; margin: 0.35rem 0 0.75rem 0; line-height: 1.45;">
+                                ${escapeHtml(p.description || '')}
+                            </p>
+
+                            <!-- Key Properties Grid -->
+                            <div class="prereq-prop-grid">
+                                <div class="prereq-prop">
+                                    <span class="prereq-prop-label">Category</span>
+                                    <span class="prereq-prop-value" style="color: #93c5fd;">${escapeHtml(p.category)}</span>
+                                </div>
+                                <div class="prereq-prop">
+                                    <span class="prereq-prop-label">Expected State</span>
+                                    <span class="prereq-prop-value" style="font-family: ui-monospace, monospace; color: #34d399;">
+                                        ${escapeHtml(String(p.expected_state))}
+                                    </span>
+                                </div>
+                                <div class="prereq-prop">
+                                    <span class="prereq-prop-label">Verification Method</span>
+                                    <span class="prereq-prop-value">${escapeHtml(p.verification_method)}</span>
+                                </div>
+                                <div class="prereq-prop">
+                                    <span class="prereq-prop-label">Source Type</span>
+                                    <span class="prereq-prop-value">${escapeHtml(p.source_type)}</span>
+                                </div>
+                            </div>
+
+                            <!-- Evidence & Provenance Details -->
+                            <div class="provenance-box">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; flex-wrap: wrap; gap: 0.4rem;">
+                                    <span style="font-size: 0.75rem; color: #a78bfa; font-weight: 600; text-transform: uppercase;">
+                                        Provenance &amp; Source
+                                    </span>
+                                    <span style="color: #cbd5e1; font-size: 0.8rem;">
+                                        Source: <strong>${escapeHtml(p.source_name || 'Official Advisory')}</strong>
+                                    </span>
+                                </div>
+                                
+                                <div style="margin-bottom: 0.5rem; font-size: 0.8rem;">
+                                    <strong style="color: var(--text-muted);">URL:</strong> ${sourceUrlMarkup}
+                                </div>
+
+                                <div>
+                                    <strong style="color: var(--text-muted); font-size: 0.8rem; display: block; margin-bottom: 0.25rem;">Evidence Text:</strong>
+                                    <div class="code-snippet" style="margin: 0; color: #94a3b8; font-size: 0.8rem; max-height: 120px; overflow-y: auto;">
+                                        ${escapeHtml(p.evidence || 'No specific raw evidence excerpt')}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            // 4b. Attack Conditions Section (Attacker Actions / Payloads / Request Conditions)
+            const attacks = data.attack_conditions || [];
+            if (attacksCountBadge) {
+                attacksCountBadge.innerText = `${attacks.length} ATTACK CONDITION${attacks.length === 1 ? '' : 'S'}`;
+            }
+
+            if (attacks.length > 0 && attackSection && attackContainer) {
+                attackSection.style.display = 'block';
+                attackContainer.innerHTML = '';
+                attacks.forEach((a, aIdx) => {
+                    const verifBadge = a.automatically_verifiable
+                        ? '<span class="badge badge-success">AUTO-VERIFIABLE: YES</span>'
+                        : '<span class="badge badge-warn">AUTO-VERIFIABLE: NO (RUNTIME / PAYLOAD)</span>';
+
+                    const trustBadge = (a.trust_level === 'Authoritative' || a.trust_level === 'AUTHORITATIVE')
+                        ? '<span class="badge badge-success">TRUST: AUTHORITATIVE</span>'
+                        : `<span class="badge badge-accent">TRUST: ${escapeHtml(a.trust_level || 'DERIVED')}</span>`;
+
+                    const confidenceBadge = `<span class="badge badge-neutral" style="background: rgba(59, 130, 246, 0.2); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.35);">CONFIDENCE: ${escapeHtml(a.confidence || 'HIGH')}</span>`;
+                    const methodBadge = `<span class="badge" style="background: rgba(139, 92, 246, 0.2); color: #c4b5fd; border: 1px solid rgba(139, 92, 246, 0.4);">METHOD: ${escapeHtml(a.verification_method || 'dynamic_validation')}</span>`;
+
+                    let sourceUrlMarkup = '<span style="color: var(--text-muted);">N/A</span>';
+                    if (a.source_url) {
+                        sourceUrlMarkup = `<a href="${escapeHtml(a.source_url)}" target="_blank" style="color: #60a5fa; text-decoration: underline; word-break: break-all;">${escapeHtml(a.source_url)} &#8599;</a>`;
+                    }
+
+                    const condTitle = a.name || a.condition;
+
+                    attackContainer.innerHTML += `
+                        <div class="prereq-card" style="border-left: 3px solid #ef4444; background: rgba(239, 68, 68, 0.04);">
+                            <div class="prereq-header">
+                                <div>
+                                    <div style="font-size: 0.75rem; color: #f87171; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.2rem;">
+                                        Attack Condition ${aIdx + 1} &bull; ${escapeHtml(a.category || 'Request Condition')}
+                                    </div>
+                                    <div style="font-size: 1.02rem; font-weight: 700; color: #fecaca;">
+                                        ${escapeHtml(condTitle)}
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: flex-end;">
+                                    ${trustBadge}
+                                    ${confidenceBadge}
+                                    ${methodBadge}
+                                    ${verifBadge}
+                                </div>
+                            </div>
+
+                            <p style="color: #cbd5e1; font-size: 0.85rem; margin: 0.5rem 0 0.75rem 0; line-height: 1.45;">
+                                ${escapeHtml(a.description || '')}
+                            </p>
+
+                            <div class="provenance-box" style="border-color: rgba(239, 68, 68, 0.2);">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem; flex-wrap: wrap; gap: 0.4rem;">
+                                    <span style="font-size: 0.75rem; color: #f87171; font-weight: 600; text-transform: uppercase;">
+                                        Source &amp; Evidence
+                                    </span>
+                                    <span style="color: #cbd5e1; font-size: 0.8rem;">
+                                        Source: <strong>${escapeHtml(a.source_name || 'Authoritative Advisory')}</strong> (${escapeHtml(a.source_type || 'advisory')})
+                                    </span>
+                                </div>
+                                <div style="margin-bottom: 0.35rem; font-size: 0.8rem;">
+                                    <strong style="color: var(--text-muted);">Verification Method:</strong> <code style="color: #c4b5fd;">${escapeHtml(a.verification_method || 'dynamic_validation')}</code> &bull; <span style="color: #94a3b8;">${a.automatically_verifiable ? 'Statically verifiable' : 'Cannot be verified by Config Collector (requires dynamic payload validation)'}</span>
+                                </div>
+                                <div style="margin-bottom: 0.4rem; font-size: 0.8rem;">
+                                    <strong style="color: var(--text-muted);">URL:</strong> ${sourceUrlMarkup}
+                                </div>
+                                <div>
+                                    <strong style="color: var(--text-muted); font-size: 0.8rem; display: block; margin-bottom: 0.2rem;">Evidence Excerpt:</strong>
+                                    <div class="code-snippet" style="margin: 0; color: #fca5a5; font-size: 0.8rem; max-height: 100px; overflow-y: auto;">
+                                        ${escapeHtml(a.evidence || 'Advisory text')}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            } else if (attackSection) {
+                attackSection.style.display = 'none';
+            }
+
+            // 5. Unknown / Cannot Verify Automatically Conditions
+            const unknowns = data.unknown_conditions || [];
+            unknownsCountBadge.innerText = `${unknowns.length} UNKNOWN CONDITION${unknowns.length === 1 ? '' : 'S'}`;
+
+            if (unknowns.length > 0) {
+                unknownSection.style.display = 'block';
+                unknownContainer.innerHTML = '';
+                unknowns.forEach(u => {
+                    unknownContainer.innerHTML += `
+                        <div class="unknown-card">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.35rem;">
+                                <strong style="color: #fbbf24; font-size: 0.95rem;">${escapeHtml(u.name)}</strong>
+                                <span class="badge badge-warn">UNKNOWN / UNVERIFIABLE</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: #cbd5e1; margin-top: 0.3rem;">
+                                <strong style="color: var(--text-muted);">Reason:</strong>
+                                ${escapeHtml(u.reason)}
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                unknownSection.style.display = 'none';
+            }
+
+            // 6. Retrieved Sources List (Collapsible)
+            const sources = data.sources || [];
+            if (sources.length > 0) {
+                let sourcesHtml = `
+                    <details style="margin-top: 1rem; background: rgba(15, 23, 42, 0.4); border: 1px solid var(--card-border); border-radius: 0.5rem; padding: 0.75rem 1rem;">
+                        <summary style="font-weight: 600; font-size: 0.85rem; color: #c4b5fd; cursor: pointer; user-select: none;">
+                            ▶ Retrieved Sources &amp; Audit Trail (${sources.length})
+                        </summary>
+                        <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                `;
+                sources.forEach(s => {
+                    sourcesHtml += `
+                        <div style="background: rgba(0,0,0,0.3); padding: 0.5rem 0.75rem; border-radius: 0.375rem; font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+                            <div>
+                                <strong style="color: #93c5fd;">${escapeHtml(s.source_name)}</strong>
+                                <span style="color: var(--text-muted); font-size: 0.75rem; margin-left: 0.4rem;">(${escapeHtml(s.source_type)})</span>
+                                <div style="margin-top: 0.2rem;">
+                                    <a href="${escapeHtml(s.source_url)}" target="_blank" style="color: #60a5fa; text-decoration: underline; word-break: break-all;">
+                                        ${escapeHtml(s.source_url)} &#8599;
+                                    </a>
+                                </div>
+                            </div>
+                            <span class="badge ${s.fetch_status === 'FETCHED ONLINE' ? 'badge-success' : 'badge-accent'}">
+                                ${escapeHtml(s.fetch_status || 'CACHED')}
+                            </span>
+                        </div>
+                    `;
+                });
+                sourcesHtml += `</div></details>`;
+                
+                // Remove previous sources section if any
+                const existingSources = document.getElementById('prereqs-sources-audit');
+                if (existingSources) existingSources.remove();
+
+                const sourcesWrapper = document.createElement('div');
+                sourcesWrapper.id = 'prereqs-sources-audit';
+                sourcesWrapper.innerHTML = sourcesHtml;
+                prereqsContainer.after(sourcesWrapper);
+            }
+
+            // 7. Collapsible Raw Agent Output
+            rawJsonEl.textContent = JSON.stringify(data.raw_record || data, null, 2);
+        }
     </script>
 </body>
 </html>

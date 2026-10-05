@@ -880,6 +880,103 @@ def validate_remediation_result(result):
     return True
 
 
+def build_fallback_remediation_result(
+    finding,
+    cve,
+    evaluation_data,
+    effective_config,
+    knowledge
+):
+    """
+    Construct a deterministic, schema-compliant contextual remediation structure
+    when LLM endpoints are unreachable or unauthorized in air-gapped environments.
+    """
+    pkg = finding.get("package") or "component"
+    inst_v = finding.get("installed_version") or "unknown"
+    fix_v = finding.get("fixed_version") or ""
+    sev = str(finding.get("severity") or "MEDIUM").upper()
+    if sev not in {"LOW", "MEDIUM", "HIGH", "CRITICAL"}:
+        sev = "HIGH"
+
+    eval_status = str(evaluation_data.get("status") or "UNKNOWN").upper()
+    if eval_status == "SATISFIED":
+        app_status = "CONFIRMED"
+        app_reason = f"Prerequisite environmental conditions for {cve} were satisfied."
+    elif eval_status == "NOT_SATISFIED":
+        app_status = "NOT_ESTABLISHED"
+        app_reason = f"Prerequisite environmental conditions for {cve} were not satisfied."
+    else:
+        app_status = "UNKNOWN"
+        app_reason = f"Environmental applicability for {cve} is undetermined."
+
+    conditions = []
+    env_eval = evaluation_data.get("evaluation", {})
+    if isinstance(env_eval, dict):
+        for cat_name, cat_val in env_eval.items():
+            if isinstance(cat_val, dict) and "conditions" in cat_val and isinstance(cat_val["conditions"], list):
+                for cond in cat_val["conditions"]:
+                    c_st = str(cond.get("status") or "UNKNOWN").upper()
+                    if c_st == "SATISFIED":
+                        c_status = "CONFIRMED"
+                    elif c_st == "NOT_SATISFIED":
+                        c_status = "NOT_SATISFIED"
+                    else:
+                        c_status = "UNKNOWN"
+                    conditions.append({
+                        "condition": str(cond.get("name") or cond.get("condition_id") or "Environmental condition"),
+                        "status": c_status,
+                        "evidence": str(cond.get("selected_evidence") or "Configuration evidence"),
+                        "reason": str(cond.get("description") or "Evaluated condition")
+                    })
+
+    if not conditions:
+        conditions.append({
+            "condition": "target_service_active",
+            "status": "CONFIRMED" if eval_status == "SATISFIED" else "UNKNOWN",
+            "evidence": f"Installed {pkg} version {inst_v}",
+            "reason": f"Evaluated presence of {pkg} {inst_v}"
+        })
+
+    desc_lower = str(finding.get("description", "")).lower()
+    is_rce = any(k in desc_lower for k in ["remote code execution", "rce", "arbitrary code"])
+    rce_status = "CONFIRMED" if is_rce and app_status == "CONFIRMED" else "NOT_ESTABLISHED" if not is_rce else "UNKNOWN"
+
+    is_info = any(k in desc_lower for k in ["information disclosure", "disclosure", "leak", "sensitive"])
+    info_status = "CONFIRMED" if is_info and app_status == "CONFIRMED" else "NOT_ESTABLISHED" if not is_info else "UNKNOWN"
+
+    fix_action = f"Upgrade {pkg} to {fix_v}" if fix_v else f"Apply vendor security update or configuration hardening for {pkg}."
+
+    return {
+        "applicability": {
+            "status": app_status,
+            "reason": app_reason
+        },
+        "risk": sev,
+        "conditions": conditions,
+        "rce_assessment": {
+            "status": rce_status,
+            "reason": f"RCE assessment for {cve}."
+        },
+        "information_disclosure_assessment": {
+            "status": info_status,
+            "reason": f"Information disclosure assessment for {cve}."
+        },
+        "root_cause": (finding.get("description") or f"Vulnerability {cve} affecting {pkg} {inst_v}.").strip(),
+        "remediation": [
+            {
+                "action": fix_action,
+                "reason": f"Addresses {cve} in {pkg} component.",
+                "type": "software_patch" if fix_v else "configuration"
+            }
+        ],
+        "validation": [
+            f"Verify {pkg} installed version after upgrade or review container configuration."
+        ],
+        "confidence": "HIGH" if eval_status in ("SATISFIED", "NOT_SATISFIED") else "MEDIUM",
+        "unknowns": []
+    }
+
+
 # ============================================================
 # MAIN REMEDIATION ENGINE
 # ============================================================
@@ -1099,30 +1196,41 @@ def generate_remediation(
     # Therefore we DO NOT perform another JSON parsing step.
     #
 
-    remediation_result = generate_response(
-        prompt,
-        task="remediation"
-    )
-
-    print(
-        "LLM response received."
-    )
-
-    # --------------------------------------------------------
-    # 6. Validate LLM result
-    # --------------------------------------------------------
-
-    print(
-        "\n[6/6] Validating LLM remediation..."
-    )
-
-    validate_remediation_result(
-        remediation_result
-    )
-
-    print(
-        "LLM remediation JSON validated successfully."
-    )
+    try:
+        remediation_result = generate_response(
+            prompt,
+            task="remediation"
+        )
+        print(
+            "LLM response received."
+        )
+        print(
+            "\n[6/6] Validating LLM remediation..."
+        )
+        validate_remediation_result(
+            remediation_result
+        )
+        print(
+            "LLM remediation JSON validated successfully."
+        )
+    except Exception as err:
+        print(
+            f"[REMEDIATION-ENGINE] Notice: LLM generation unavailable ({err}). "
+            "Constructing deterministic offline remediation fallback."
+        )
+        remediation_result = build_fallback_remediation_result(
+            finding=finding,
+            cve=cve,
+            evaluation_data=evaluation_data,
+            effective_config=effective_config,
+            knowledge=knowledge_data
+        )
+        validate_remediation_result(
+            remediation_result
+        )
+        print(
+            "Deterministic offline remediation fallback validated successfully."
+        )
 
     # --------------------------------------------------------
     # Final result

@@ -21,6 +21,14 @@ from report import generate_html_report
 from ai_analyzer import analyze_finding
 from remediation_planner import build_remediation_plan
 
+try:
+    from cve_evaluator import CVEEvaluator
+    from vulnerability_enricher import enrich_findings_threat_intel
+except ImportError:
+    from orchestrator.cve_evaluator import CVEEvaluator
+    from orchestrator.vulnerability_enricher import enrich_findings_threat_intel
+
+
 
 # ============================================================
 # GENERAL JSON HELPERS
@@ -362,20 +370,24 @@ def run_application_scan(
     )
 
     for finding in findings:
+        try:
+            analysis = analyze_finding(
+                finding,
+                profile
+            )
 
-        analysis = analyze_finding(
-            finding,
-            profile
-        )
+            finding[
+                "ai_analysis"
+            ] = analysis
 
-        finding[
-            "ai_analysis"
-        ] = analysis
-
-        print(
-            f"AI analysis completed for "
-            f"{finding['id']}"
-        )
+            print(
+                f"AI analysis completed for "
+                f"{finding['id']}"
+            )
+        except Exception as err:
+            print(
+                f"[AI-ANALYZER] Skipped LLM analysis for {finding.get('id')}: {err}"
+            )
 
     # ========================================================
     # 6. REMEDIATION PLANS
@@ -411,6 +423,22 @@ def run_application_scan(
         workspace_path
         / "findings.json"
     )
+
+    # ========================================================
+    # PREREQUISITE EVALUATION & THREAT INTEL ENRICHMENT
+    # ========================================================
+    try:
+        app_evaluator = CVEEvaluator()
+        for finding in findings:
+            cve_id = finding.get("cve") or finding.get("VulnerabilityID")
+            if cve_id and str(cve_id).startswith("CVE-") and "cve_evaluation" not in finding:
+                cve_eval = app_evaluator.evaluate_cve(cve_id)
+                finding["cve_evaluation"] = cve_eval
+                finding["prerequisite_status"] = cve_eval.get("status", "UNKNOWN").upper()
+    except Exception as e:
+        print(f"[EVALUATOR] Application scan prerequisite check: {e}")
+
+    enrich_findings_threat_intel(findings)
 
     report_data = save_findings(
         findings,
@@ -1034,14 +1062,15 @@ def run_tomcat_contextual_scan(
     aggregated_findings = trivy_findings + nuclei_findings
     print(f"[AGGREGATED] total findings: {len(aggregated_findings)}")
 
+    findings = correlate_findings(aggregated_findings)
+    print(f"[CONSOLIDATED] unique findings: {len(findings)}")
+
     save_json({
-        "total_findings": len(aggregated_findings),
+        "total_findings": len(findings),
         "trivy_count": len(trivy_findings),
         "nuclei_count": len(nuclei_findings),
-        "findings": aggregated_findings
+        "findings": findings
     }, normalized_findings_file)
-
-    findings = aggregated_findings
 
     if cve is None:
         knowledge = {}
@@ -1237,21 +1266,29 @@ def run_tomcat_contextual_scan(
         "[5/5] Running context-aware LLM remediation analysis..."
     )
 
-    if remediation_output:
-
+    if remediation_output and Path(remediation_output).resolve().exists():
         remediation_output = Path(
             remediation_output
         ).resolve()
-
-    else:
-
-        remediation_output = (
-            workspace_path
-            / "remediation-analysis.json"
+        print(
+            "Using existing remediation analysis:"
         )
+        print(
+            remediation_output
+        )
+    else:
+        if remediation_output:
+            remediation_output = Path(
+                remediation_output
+            ).resolve()
+        else:
+            remediation_output = (
+                workspace_path
+                / "remediation-analysis.json"
+            )
 
-    run_python_module(
-        "remediation_engine.py",
+        run_python_module(
+            "remediation_engine.py",
         [
             "--findings",
             normalized_findings_file,
@@ -1321,24 +1358,38 @@ def run_tomcat_contextual_scan(
     # CONTEXTUAL ANALYSIS ENRICHMENT FOR ALL FINDINGS
     # ========================================================
     print()
-    print("Generating contextual assessment & condition evaluation for all findings...")
-    tomcat_version = (
-        config_data.get("tomcat", {}).get("version")
-        or "9.0.98"
+    print("Evaluating prerequisites and conditions dynamically for all findings...")
+
+    evaluator = CVEEvaluator(
+        knowledge_source=knowledge_file,
+        config_source=config_data
     )
 
     for idx, f in enumerate(findings):
         f_cve = f.get("cve") or f.get("VulnerabilityID") or f"VULN-{idx}"
-        if f_cve == cve:
-            continue
+        if f_cve == cve and "cve_evaluation" in f:
+            cve_eval = f["cve_evaluation"]
+        elif str(f_cve).startswith("CVE-"):
+            cve_eval = evaluator.evaluate_cve(f_cve)
+        else:
+            cve_eval = {
+                "cve_id": f_cve,
+                "status": "unknown",
+                "reason": "No CVE identifier",
+                "evaluation": {}
+            }
+
+        eval_st = cve_eval.get("status", "unknown").lower()
+        f["cve_evaluation"] = cve_eval
+        f["prerequisite_status"] = eval_st.upper()
 
         pkg = f.get("package") or "system-package"
-        inst_v = f.get("installed_version") or tomcat_version
-        fix_v = f.get("fixed_version") or "Vendor security update"
+        inst_v = f.get("installed_version") or "N/A"
+        fix_v = f.get("fixed_version") or ""
         sev = str(f.get("severity") or "MEDIUM").upper()
         desc = (f.get("description") or "").strip()
         raw_title = (f.get("title") or "").strip()
-        
+
         # Prevent scanner truncation: if title ends with '...' or is incomplete, use full description
         if desc and (raw_title.endswith("...") or len(raw_title) < 20):
             root_cause_text = desc.replace("\n", " ").strip()
@@ -1348,77 +1399,6 @@ def run_tomcat_contextual_scan(
             root_cause_text = raw_title.replace("\n", " ").strip()
         else:
             root_cause_text = f"Security vulnerability in {pkg} component code path."
-
-        title = raw_title if (raw_title and not raw_title.endswith("...")) else root_cause_text
-
-        is_tomcat = any(k in str(pkg).lower() for k in ["tomcat", "catalina", "coyote", "tribes"])
-
-        conditions = [
-            {
-                "condition_id": "cond_version",
-                "name": "software_version_vulnerable",
-                "description": f"Installed {pkg} version {inst_v} falls within affected vulnerability range.",
-                "required_value": True,
-                "status": "satisfied",
-                "selected_evidence": {
-                    "path": f"{pkg}.installed_version",
-                    "raw_value": inst_v,
-                    "value": inst_v,
-                    "transform": "identity",
-                    "status": "satisfied"
-                }
-            },
-            {
-                "condition_id": "cond_service",
-                "name": "target_service_active",
-                "description": "Target container and network services are actively running.",
-                "required_value": "must_be_identified",
-                "status": "satisfied",
-                "selected_evidence": {
-                    "path": "container.status",
-                    "raw_value": f"{container_name} (Port 8080/HTTP active)",
-                    "value": "Running",
-                    "transform": "identity",
-                    "status": "satisfied"
-                }
-            }
-        ]
-
-        if is_tomcat and config_data.get("effective_configuration", {}).get("default_servlet", {}).get("writes_enabled"):
-            conditions.append({
-                "condition_id": "cond_default_servlet",
-                "name": "default_servlet_writes_enabled",
-                "description": "DefaultServlet writes are enabled in container web.xml.",
-                "required_value": True,
-                "status": "satisfied",
-                "selected_evidence": {
-                    "path": "default_servlet.writes_enabled",
-                    "raw_value": True,
-                    "value": True,
-                    "transform": "identity",
-                    "status": "satisfied"
-                }
-            })
-
-        cve_eval = {
-            "cve_id": f_cve,
-            "product": {"name": pkg},
-            "detected_version": inst_v,
-            "version_evaluation": {
-                "name": "software_version_vulnerable",
-                "status": "satisfied",
-                "required_value": True,
-                "detected_version": inst_v,
-                "affected_range": f"<= {inst_v}",
-                "reason": f"Installed {pkg} version {inst_v} is vulnerable. Fixed version: {fix_v}"
-            },
-            "evaluation": {
-                "environment_exposure": {
-                    "status": "satisfied",
-                    "conditions": conditions
-                }
-            }
-        }
 
         has_specific_fix = fix_v and fix_v not in ("Vendor security update", "None", "")
         if has_specific_fix:
@@ -1432,13 +1412,23 @@ def run_tomcat_contextual_scan(
             rem_reason = f"Upstream distributor has not yet published an official fixed version for {pkg} ({f_cve}). Requires security notice tracking or runtime hardening."
             validation_step = f"Track OS security notices (USN) for {pkg} and rescan once patch is available."
 
+        if eval_st == "satisfied":
+            app_status = "CONFIRMED"
+            app_reason = f"Prerequisites satisfied for {f_cve}: {cve_eval.get('reason', '')}"
+        elif eval_st == "not_satisfied":
+            app_status = "NOT_AFFECTED"
+            app_reason = f"Prerequisites not satisfied for {f_cve}: {cve_eval.get('reason', '')}"
+        else:
+            app_status = "UNKNOWN"
+            app_reason = f"Prerequisite applicability unknown for {f_cve}: {cve_eval.get('reason', 'No prerequisite data')}"
+
         rem_analysis = {
             "applicability": {
-                "status": "CONFIRMED",
-                "reason": f"Installed {pkg} version {inst_v} in active container is affected by {f_cve}."
+                "status": app_status,
+                "reason": app_reason
             },
             "risk": sev,
-            "confidence": "HIGH",
+            "confidence": "HIGH" if eval_st in ("satisfied", "not_satisfied") else "MEDIUM",
             "root_cause": root_cause_text,
             "remediation": [
                 {
@@ -1454,7 +1444,6 @@ def run_tomcat_contextual_scan(
             ]
         }
 
-        f["cve_evaluation"] = cve_eval
         f["remediation_analysis"] = rem_analysis
         f["environment_configuration"] = config_data
         f["contextual_cve_analysis"] = {
@@ -1463,6 +1452,11 @@ def run_tomcat_contextual_scan(
             "condition_evaluation": cve_eval,
             "remediation_analysis": rem_analysis
         }
+
+    # ========================================================
+    # THREAT INTELLIGENCE ENRICHMENT (CISA KEV + EPSS)
+    # ========================================================
+    enrich_findings_threat_intel(findings)
 
     # ========================================================
     # SAVE FINAL FINDINGS

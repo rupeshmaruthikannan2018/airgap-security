@@ -13,8 +13,22 @@ from pathlib import Path
 
 from report import generate_html_report
 from remediation_planner import build_remediation_plan
-from scanner_manager import normalize_trivy, save_findings
+from scanner_manager import normalize_trivy, save_findings, correlate_findings
 from trivy_scanner import run_trivy
+
+try:
+    from vulnerability_enricher import enrich_findings_threat_intel
+except ImportError:
+    from orchestrator.vulnerability_enricher import enrich_findings_threat_intel
+
+try:
+    from cve_evaluator import CVEEvaluator
+except ImportError:
+    try:
+        from orchestrator.cve_evaluator import CVEEvaluator
+    except ImportError:
+        CVEEvaluator = None
+
 
 
 SOURCE_SUFFIXES = {".py", ".js", ".ts", ".java", ".go", ".rb", ".php", ".c", ".cpp", ".cs"}
@@ -120,11 +134,26 @@ def run_routed_scan(target: Path, workspace: Path, application_scan) -> dict:
         trivy_results = run_trivy(target, workspace / "trivy-results.json")
         if trivy_results is not None:
             findings.extend(normalize_trivy(trivy_results))
+        findings = correlate_findings(findings)
     else:
         raise ValueError(plan["selection_reason"])
 
+    if CVEEvaluator is not None:
+        try:
+            router_evaluator = CVEEvaluator()
+            for finding in findings:
+                cve_id = finding.get("cve") or finding.get("VulnerabilityID")
+                if cve_id and str(cve_id).startswith("CVE-") and "cve_evaluation" not in finding:
+                    cve_eval = router_evaluator.evaluate_cve(cve_id)
+                    finding["cve_evaluation"] = cve_eval
+                    finding["prerequisite_status"] = cve_eval.get("status", "UNKNOWN").upper()
+        except Exception:
+            pass
+
     for finding in findings:
         finding.setdefault("remediation_plan", build_remediation_plan(finding))
+
+    enrich_findings_threat_intel(findings)
 
     findings_file = workspace / "findings.json"
     report_file = workspace / "report.html"

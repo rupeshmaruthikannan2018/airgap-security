@@ -1,7 +1,8 @@
 from local_llm import generate_response
 
 
-prompt = """
+if __name__ == "__main__":
+    prompt = """
 Analyze this vulnerability:
 
 CWE-78
@@ -17,10 +18,8 @@ Explain:
 3. How it should be fixed.
 """
 
+    response = generate_response(prompt)
 
-response = generate_response(prompt)
-
-
-print("LOCAL LLM RESPONSE")
-print("=" * 40)
-print(response)
+    print("LOCAL LLM RESPONSE")
+    print("=" * 40)
+    print(response)

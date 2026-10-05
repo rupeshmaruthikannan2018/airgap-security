@@ -1,5 +1,6 @@
 import subprocess
 import json
+import time
 from pathlib import Path
 
 
@@ -34,6 +35,7 @@ def run_semgrep(app_path, output_file):
 
     print("[2/5] Running Semgrep...")
 
+    start_time = time.time()
     try:
         result = subprocess.run(
             command,
@@ -50,6 +52,8 @@ def run_semgrep(app_path, output_file):
             f"{SEMGREP_TIMEOUT_SECONDS} seconds."
         )
         return None
+
+    duration = round(time.time() - start_time, 3)
 
     # Semgrep normally returns:
     #   0 -> scan completed with no findings
@@ -80,6 +84,22 @@ def run_semgrep(app_path, output_file):
         print(e)
         return None
 
-    print("Semgrep completed.")
+    meta = {
+        "command": command,
+        "rule_dir": r"C:\airgap-security\rules\semgrep",
+        "returncode": result.returncode,
+        "execution_time_seconds": duration,
+        "output_file": str(output_file),
+    }
+    meta_path = output_file.parent / f"{output_file.stem}_meta.json"
+    try:
+        meta_path.write_text(json.dumps(meta, indent=2), encoding="utf-8")
+    except Exception:
+        pass
+
+    if isinstance(data, dict):
+        data["_execution_metadata"] = meta
+
+    print(f"Semgrep completed in {duration}s.")
 
     return data
